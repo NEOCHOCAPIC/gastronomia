@@ -1,0 +1,50 @@
+---
+// No props needed
+---
+<section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0 z-0">
+    <div
+      class="absolute inset-0 bg-cover bg-center"
+      style="background-image: url('/hero.jpg');"
+    ></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/50 to-charcoal/70"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10 container mx-auto px-4 lg:px-8 text-center">
+    <div class="max-w-4xl mx-auto space-y-8 animate-fade-in-up">
+      <h1 class="text-5xl md:text-7xl font-serif font-bold text-white leading-tight text-balance">
+        Experiencias de <span class="text-primary">Alimentación Inteligente</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-gray-light leading-relaxed text-pretty">
+        Especialistas en gastronomía corporativa, promoviendo la libertad y la vida saludable con recetas caseras de
+        gusto universal
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+        <a
+          href="#servicios"
+          class="px-8 py-4 bg-primary text-white rounded-full font-semibold hover:bg-primary-dark transition-smooth hover:shadow-xl hover:scale-105"
+        >
+          Conoce Nuestros Servicios
+        </a>
+        <a
+          href="#nosotros"
+          class="px-8 py-4 bg-white/10 backdrop-blur-sm text-white border-2 border-white rounded-full font-semibold hover:bg-white hover:text-charcoal transition-smooth"
+        >
+          Sobre Nosotros
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <a
+    href="#nosotros"
+    class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce"
+    aria-label="Scroll down"
+  >
+    <!-- ChevronDown SVG -->
+    <svg width="32" height="32" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </a>
+</section>

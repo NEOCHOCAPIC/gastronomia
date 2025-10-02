@@ -1,0 +1,57 @@
+---
+const values = [
+  {
+    icon: `<svg class='w-8 h-8 text-primary group-hover:text-white transition-smooth' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M20.8 4.6a5.5 5.5 0 0 0-7.8 0l-.5.5-.5-.5a5.5 5.5 0 0 0-7.8 7.8l8.3 8.3 8.3-8.3a5.5 5.5 0 0 0 0-7.8z'/></svg>`,
+    title: "Respeto y Empatía",
+    description: "Valoramos a cada persona y sus necesidades individuales",
+  },
+  {
+    icon: `<svg class='w-8 h-8 text-primary group-hover:text-white transition-smooth' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M17 21v-2a4 4 0 0 0-8 0v2'/><circle cx='12' cy='7' r='4'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><path d='M6 17.13A4 4 0 0 0 3 21v2'/></svg>`,
+    title: "Compañerismo y Trabajo en Equipo",
+    description: "Juntos logramos resultados extraordinarios",
+  },
+  {
+    icon: `<svg class='w-8 h-8 text-primary group-hover:text-white transition-smooth' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><circle cx='12' cy='8' r='7'/><polyline points='8.21 13.89 7.25 21 12 17.77 16.75 21 15.79 13.88'/></svg>`,
+    title: "Compromiso con la Calidad",
+    description: "Excelencia en cada plato que servimos",
+  },
+  {
+    icon: `<svg class='w-8 h-8 text-primary group-hover:text-white transition-smooth' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M12 2v2'/><path d='M12 22v-2'/><path d='M4.93 4.93l1.41 1.41'/><path d='M17.66 17.66l-1.41-1.41'/><path d='M2 12h2'/><path d='M22 12h-2'/><path d='M4.93 19.07l1.41-1.41'/><path d='M17.66 6.34l-1.41 1.41'/><circle cx='12' cy='12' r='7'/></svg>`,
+    title: "Conciencia Ambiental y Social",
+    description: "Responsables con nuestro entorno y comunidad",
+  },
+  {
+    icon: `<svg class='w-8 h-8 text-primary group-hover:text-white transition-smooth' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M2 6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6z'/><path d='M6 2v2'/><path d='M6 10v2'/><path d='M10 6h2'/><path d='M2 6h2'/></svg>`,
+    title: "Innovación y Mejora Continua",
+    description: "Siempre buscando nuevas formas de mejorar",
+  },
+];
+---
+<section id="valores" class="py-20 lg:py-32 bg-muted relative overflow-hidden">
+  <!-- Decorative Elements -->
+  <div class="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl lg:text-5xl font-serif font-bold text-charcoal mb-4">
+        Nuestros <span class="text-primary">Valores</span>
+      </h2>
+      <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
+      <p class="text-xl text-gray-dark max-w-3xl mx-auto">
+        Principios que guían nuestro actuar diario, basados en la ética, honestidad, respeto, responsabilidad y
+        compromiso con las buenas prácticas
+      </p>
+    </div>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {values.map((value, index) => (
+        <div class="bg-white p-8 rounded-xl shadow-md hover:shadow-2xl transition-smooth hover:-translate-y-2 group" style={`animation-delay: ${index * 100}ms`}>
+          <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6 group-hover:bg-primary group-hover:scale-110 transition-smooth">
+            <span set:html={value.icon}></span>
+          </div>
+          <h3 class="text-xl font-bold text-charcoal mb-3">{value.title}</h3>
+          <p class="text-gray-dark leading-relaxed">{value.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
