@@ -1,46 +1,45 @@
 ---
 const stats = [
   {
-    icon: `<svg class='w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-smooth' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><rect x='3' y='7' width='18' height='13' rx='2'/><path d='M6 7V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3'/></svg>`,
+    icon: `<svg class='w-8 h-8 text-primary mb-3' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><rect x='3' y='7' width='18' height='13' rx='2'/><path d='M6 7V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3'/></svg>`,
     label: "Años de Experiencia",
     value: "15+"
   },
   {
-    icon: `<svg class='w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-smooth' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M17 21v-2a4 4 0 0 0-8 0v2'/><circle cx='12' cy='7' r='4'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><path d='M6 17.13A4 4 0 0 0 3 21v2'/></svg>`,
+    icon: `<svg class='w-8 h-8 text-primary mb-3' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M17 21v-2a4 4 0 0 0-8 0v2'/><circle cx='12' cy='7' r='4'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><path d='M6 17.13A4 4 0 0 0 3 21v2'/></svg>`,
     label: "Clientes Satisfechos",
     value: "100+"
   },
   {
-    icon: `<svg class='w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-smooth' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><circle cx='12' cy='8' r='7'/><polyline points='8.21 13.89 7.25 21 12 17.77 16.75 21 15.79 13.88'/></svg>`,
+    icon: `<svg class='w-8 h-8 text-primary mb-3' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><circle cx='12' cy='8' r='7'/><polyline points='8.21 13.89 7.25 21 12 17.77 16.75 21 15.79 13.88'/></svg>`,
     label: "Certificaciones",
     value: "10+"
   },
   {
-    icon: `<svg class='w-8 h-8 text-primary mb-3 group-hover:scale-110 transition-smooth' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><polyline points='17 1 21 5 17 9'/><path d='M3 11V9a4 4 0 0 1 4-4h14'/></svg>`,
+    icon: `<svg class='w-8 h-8 text-primary mb-3' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><polyline points='17 1 21 5 17 9'/><path d='M3 11V9a4 4 0 0 1 4-4h14'/></svg>`,
     label: "Comidas Servidas",
     value: "1M+"
   }
 ];
 ---
-<section id="nosotros" class="py-20 lg:py-32 bg-muted">
+<section id="nosotros" class="py-20 bg-muted">
   <div class="container mx-auto px-4 lg:px-8">
     <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
       <!-- Image -->
       <div class="relative h-[400px] lg:h-[600px] rounded-2xl overflow-hidden shadow-2xl group">
         <div
-          class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+          class="absolute inset-0 bg-cover bg-center"
           style="background-image: url('/about.jpg');"
         ></div>
       </div>
       <!-- Content -->
       <div class="space-y-8">
         <div class="space-y-4">
-          <h2 class="text-4xl lg:text-5xl font-serif font-bold text-charcoal">
-            Somos <span class="text-primary">Mantagua</span>
+          <h2 class="text-4xl lg:text-5xl font-serif font-bold text-black">
+            Somos <span class="text-gold-dark">Mantagua</span>
           </h2>
-          <div class="w-20 h-1 bg-primary"></div>
         </div>
-        <div class="space-y-4 text-gray-dark leading-relaxed">
+        <div class="space-y-4  text-gray-700 leading-relaxed">
           <p class="text-lg">
             Somos una empresa gastronómica ubicada en la V Región, especialistas en la administración de casinos,
             restaurantes, cafeterías y banquetería.
@@ -49,15 +48,15 @@ const stats = [
             Realizamos asesorías Nutricionales, Administrativas y de Calidad. Tenemos convenios con grandes empresas
             nacionales e internacionales.
           </p>
-          <p class="text-lg font-semibold text-charcoal">Somos expertos en alimentación colectiva.</p>
+          <p class="text-lg font-semibold ">Somos expertos en alimentación colectiva.</p>
         </div>
         <!-- Stats Grid -->
-        <div class="grid grid-cols-2 gap-6 pt-8">
-          {stats.map(stat => (
-            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition-smooth hover:-translate-y-1 group">
+        <div class="grid grid-cols-2 gap-6 pt-8 text-gray-700" id="stats-grid">
+          {stats.map((stat, index) => (
+            <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl">
               <span set:html={stat.icon}></span>
-              <div class="text-3xl font-bold text-charcoal mb-1">{stat.value}</div>
-              <div class="text-sm text-gray-medium">{stat.label}</div>
+              <div class="text-3xl font-bold mb-1 stat-value" data-target={stat.value}>0</div>
+              <div class="text-sm ">{stat.label}</div>
             </div>
           ))}
         </div>
@@ -65,3 +64,59 @@ const stats = [
     </div>
   </div>
 </section>
+
+<script>
+  // Función para animar los números
+  function animateValue(element: HTMLElement, start: number, end: number, duration: number, suffix: string = '') {
+    const startTimestamp = performance.now();
+    
+    const step = (timestamp: number) => {
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+      const current = Math.floor(easeOutQuart * (end - start) + start);
+      
+      element.textContent = current.toLocaleString() + suffix;
+      
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        element.textContent = end.toLocaleString() + suffix;
+      }
+    };
+    
+    requestAnimationFrame(step);
+  }
+
+  // Configurar Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const statElements = entry.target.querySelectorAll('.stat-value');
+        
+        statElements.forEach((element) => {
+          const target = (element as HTMLElement).getAttribute('data-target');
+          if (target) {
+            // Extraer el número y el sufijo
+            const match = target.match(/^(\d+)(.*)$/);
+            if (match) {
+              const num = parseInt(match[1]);
+              const suffix = match[2];
+              animateValue(element as HTMLElement, 0, num, 2000, suffix);
+            }
+          }
+        });
+        
+        // Dejar de observar después de animar
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.5
+  });
+
+  // Observar el grid de stats
+  const statsGrid = document.getElementById('stats-grid');
+  if (statsGrid) {
+    observer.observe(statsGrid);
+  }
+</script>

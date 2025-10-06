@@ -21,13 +21,13 @@ const navItems = [
       </a>
       <nav class="hidden md:flex items-center gap-8">
         {navItems.map(item => (
-          <a href={item.href} class="text-sm font-medium text-gray-light hover:text-gold transition-smooth relative group">
+          <a href={item.href} class="text-sm font-medium text-gold-dark hover:text-gold transition-smooth relative group">
             {item.label}
             <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
           </a>
   
       ))}
-        <a href="#contacto" class="px-6 py-2.5 bg-gold text-white rounded-full font-medium hover:bg-gold-dark transition-smooth hover:shadow-lg hover:scale-105">
+        <a href="#contacto" class="px-6 py-2.5 bg-gold-dark text-white rounded-full font-medium hover:bg-gold-dark">
           Contáctanos
         </a>
       </nav>
