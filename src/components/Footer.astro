@@ -1,0 +1,155 @@
+---
+const contacts = [
+  {
+    name: 'Delisano',
+    phone: '+56 9 3231 4819',
+    email: 'contactodelisano@gmail.com',
+    logo: '/logos/delisano.webp',
+  },
+  {
+    name: 'Café Club',
+    phone: '+56 9 3231 4824',
+    email: 'cafeclub.uai@gmail.com',
+    logo: '/logos/cafe.webp',
+  },
+  {
+    name: 'Mantagua Casino Gasvalpo',
+    phone: '+56 9 5218 3061',
+    email: 'casinomantagua.gasvalpo@gmail.com',
+    logo: '/logos/man.webp',
+  },
+];
+---
+
+<footer class="bg-gradient-to-b from-[#F8F6F3] to-white border-t border-gray-200 pt-16 pb-8 text-gray-800 relative overflow-hidden">
+  <!-- Línea decorativa superior -->
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      
+      <!-- Columna 1: Branding y contacto principal -->
+      <div class="flex flex-col items-center md:items-start space-y-6">
+        <div class="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+          <img src="/Logo.webp" alt="Mantagua Gastronomía" class="h-16 w-auto" />
+        </div>
+        
+        <div>
+          <h3 class="text-2xl font-bold bg-gradient-to-r from-[#D4AF37] to-[#B8941F] bg-clip-text text-transparent mb-2">
+            Mantagua Gastronomía
+          </h3>
+          <p class="text-gray-600 flex items-center gap-2 mb-4">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Viña del Mar, Chile
+          </p>
+        </div>
+
+        <!-- Contacto con iconos -->
+        <div class="flex flex-col gap-3 w-full">
+          <a href="tel:+56952183061" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
+            <div class="w-10 h-10 bg-gradient-to-br from-[#D4AF37] to-[#B8941F] rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.25.72 3.32a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.07.35 2.19.59 3.32.72A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 group-hover:text-[#D4AF37] transition-colors">+56 9 5218 3061</span>
+          </a>
+          
+          <a href="mailto:mantaguagastronomia@gmail.com" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
+            <div class="w-10 h-10 bg-gradient-to-br from-[#D4AF37] to-[#B8941F] rounded-full flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300">
+              <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3,7 12,13 21,7"/></svg>
+            </div>
+            <span class="text-sm font-medium text-gray-700 group-hover:text-[#D4AF37] transition-colors truncate">mantaguagastronomia@gmail.com</span>
+          </a>
+        </div>
+
+        <!-- Redes sociales -->
+        <div class="flex gap-4 pt-2">
+          <a href="#" class="w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:from-[#D4AF37] hover:to-[#B8941F] hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-6">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.04c-5.5 0-9.96 4.46-9.96 9.96 0 4.41 3.6 8.06 8.01 8.93v-6.32h-2.41v-2.61h2.41v-2c0-2.39 1.43-3.71 3.62-3.71 1.05 0 2.15.19 2.15.19v2.36h-1.21c-1.19 0-1.56.74-1.56 1.5v1.66h2.65l-.42 2.61h-2.23v6.32c4.41-.87 8.01-4.52 8.01-8.93 0-5.5-4.46-9.96-9.96-9.96z"/></svg>
+          </a>
+          <a href="#" class="w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:from-[#D4AF37] hover:to-[#B8941F] hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-6">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          </a>
+          <a href="#" class="w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:from-[#D4AF37] hover:to-[#B8941F] hover:text-white transition-all duration-300 hover:scale-110 hover:rotate-6">
+            <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M8.29 20.25c7.55 0 11.67-6.25 11.67-11.67 0-.18 0-.35-.01-.53A8.35 8.35 0 0 0 22 5.92a8.19 8.19 0 0 1-2.36.65 4.12 4.12 0 0 0 1.8-2.27 8.22 8.22 0 0 1-2.6 1 4.1 4.1 0 0 0-7 3.74A11.65 11.65 0 0 1 3.39 4.62a4.1 4.1 0 0 0 1.27 5.47A4.07 4.07 0 0 1 2.8 9.6v.05a4.1 4.1 0 0 0 3.29 4.02 4.1 4.1 0 0 1-1.85.07 4.1 4.1 0 0 0 3.83 2.85A8.23 8.23 0 0 1 2 18.41a11.62 11.62 0 0 0 6.29 1.84"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2: Locales -->
+      <div class="flex flex-col items-center md:items-start">
+        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+          <span class="w-8 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent"></span>
+          <span class="text-gray-800">Nuestros Locales</span>
+        </h3>
+        <div class="flex flex-col gap-5 w-full">
+          {contacts.map((c) => (
+            <div class="flex items-start gap-4 p-4 rounded-xl bg-white hover:shadow-lg transition-all duration-300 group border border-gray-100">
+              <div class="w-14 h-14 rounded-full bg-gradient-to-br from-gray-50 to-gray-100 p-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <img src={c.logo} alt={c.name + ' logo'} class="w-full h-full rounded-full object-cover" />
+              </div>
+              <div class="flex-1 min-w-0">
+                <h4 class="font-bold text-gray-800 mb-1 group-hover:text-[#D4AF37] transition-colors">{c.name}</h4>
+                <p class="text-sm text-gray-600 mb-1 flex items-center gap-2">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.25.72 3.32a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.07.35 2.19.59 3.32.72A2 2 0 0 1 22 16.92z"/></svg>
+                  {c.phone}
+                </p>
+                <p class="text-xs text-gray-500 truncate">{c.email}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Columna 3: Enlaces útiles -->
+      <div class="flex flex-col items-center md:items-start">
+        <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+          <span class="w-8 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent"></span>
+          <span class="text-gray-800">Enlaces Útiles</span>
+        </h3>
+        <ul class="flex flex-col gap-3 w-full mb-6">
+          <li>
+            <a href="#servicios" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
+              <span class="w-2 h-2 bg-[#D4AF37] rounded-full group-hover:w-6 transition-all duration-300"></span>
+              <span class="text-gray-700 group-hover:text-[#D4AF37] font-medium transition-colors">Servicios</span>
+            </a>
+          </li>
+          <li>
+            <a href="#nosotros" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
+              <span class="w-2 h-2 bg-[#D4AF37] rounded-full group-hover:w-6 transition-all duration-300"></span>
+              <span class="text-gray-700 group-hover:text-[#D4AF37] font-medium transition-colors">Sobre Nosotros</span>
+            </a>
+          </li>
+          <li>
+            <a href="#ubicaciones" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
+              <span class="w-2 h-2 bg-[#D4AF37] rounded-full group-hover:w-6 transition-all duration-300"></span>
+              <span class="text-gray-700 group-hover:text-[#D4AF37] font-medium transition-colors">Ubicaciones</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
+              <span class="w-2 h-2 bg-[#D4AF37] rounded-full group-hover:w-6 transition-all duration-300"></span>
+              <span class="text-gray-700 group-hover:text-[#D4AF37] font-medium transition-colors">Política de Privacidad</span>
+            </a>
+          </li>
+        </ul>
+
+        <!-- CTA botón -->
+        <div class="w-full">
+          <a href="#contacto" class="block w-full px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-xl font-semibold text-center hover:shadow-lg hover:scale-105 transition-all duration-300">
+            Solicita una Cotización
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-t border-gray-200 pt-8 mt-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-600">
+        <p>© 2025 Mantagua Gastronomía. Todos los derechos reservados.</p>
+        <p class="flex items-center gap-2">
+          Hecho por Webmakerchile
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

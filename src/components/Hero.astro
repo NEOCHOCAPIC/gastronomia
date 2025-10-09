@@ -1,50 +1,101 @@
 ---
 // No props needed
 ---
-<section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <!-- Background Image with Overlay -->
+<section id="inicio" class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 pb-5">
+  <!-- Background Image with Enhanced Overlay -->
   <div class="absolute inset-0 z-0">
     <div
-      class="absolute inset-0 bg-cover bg-center"
+      class="absolute inset-0 bg-cover bg-center transform scale-105 transition-transform duration-[10000ms] hover:scale-110"
       style="background-image: url('/hero/1.jpg');"
     ></div>
-    <div class="absolute inset-0 bg-gradient-to-b from-charcoal/70 via-charcoal/50 to-charcoal/70"></div>
+    <!-- Overlay mejorado con gradientes más sofisticados -->
+    <div class="absolute inset-0 bg-gradient-to-b from-charcoal/80 via-charcoal/60 to-charcoal/80"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-[#2C2416]/30 via-transparent to-[#2C2416]/30"></div>
+  </div>
+
+  <!-- Elementos decorativos -->
+  <div class="absolute inset-0 z-0 opacity-10">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-[#D4AF37] rounded-full filter blur-[100px]"></div>
+    <div class="absolute bottom-20 right-10 w-96 h-96 bg-[#F4A261] rounded-full filter blur-[120px]"></div>
   </div>
 
   <!-- Content -->
   <div class="relative z-10 container mx-auto px-4 lg:px-8 text-center">
-    <div class="max-w-4xl mx-auto space-y-8 animate-fade-in-up text-white">
-      <h1 class="text-5xl md:text-7xl font-serif font-bold  leading-tight text-balance">
-        Experiencias de <span class="text-primary">Alimentación Inteligente</span>
+    <div class="max-w-5xl mx-auto space-y-8 animate-fade-in-up">
+  
+
+      <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-bold leading-tight text-balance">
+        <span class="text-white">Experiencias de</span>
+        <br/>
+        <span class="bg-gradient-to-r from-[#D4AF37] via-[#F4A261] to-[#D4AF37] bg-clip-text text-transparent animate-gradient">
+          Alimentación Inteligente
+        </span>
       </h1>
-      <p class="text-xl md:text-2xl  leading-relaxed text-pretty">
-        Especialistas en gastronomía corporativa, promoviendo la libertad y la vida saludable con recetas caseras de
-        gusto universal
+      
+      <p class="text-xl md:text-2xl lg:text-3xl text-white/90 leading-relaxed text-pretty max-w-3xl mx-auto font-light">
+        Especialistas en gastronomía corporativa, promoviendo la libertad y la vida saludable con recetas caseras de gusto universal
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+
+      <!-- Botones mejorados -->
+      <div class="flex flex-col sm:flex-row gap-5 justify-center items-center pt-8">
         <a
-          href="#servicios"
-          class="px-8 py-4 bg-gold-dark text-gray-800 border-2 border-gray-800 rounded-full font-semibold"
+          href="#"
+          class="group relative px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-full font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-[#D4AF37]/50"
         >
-          Conoce Nuestros Servicios
+          <span class="relative z-10 flex items-center gap-2">
+            Conoce Nuestros Servicios
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="group-hover:translate-x-1 transition-transform"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
+          <div class="absolute inset-0 bg-gradient-to-r from-[#B8941F] to-[#D4AF37] opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
         </a>
+        
         <a
-          href="#nosotros"
-          class="px-8 py-4 bg-gold-dark backdrop-blur-sm text-gray-800 border-2 border-gray-800 rounded-full font-semibold"
+          href="/sobre-nosotros"
+          class="group px-8 py-4 bg-white/10 backdrop-blur-md text-white border-2 border-white/30 rounded-full font-semibold hover:bg-white/20 hover:border-white/50 transition-all duration-300 hover:scale-105"
         >
-          Sobre Nosotros
+          <span class="flex items-center gap-2">
+            Sobre Nosotros
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="group-hover:translate-x-1 transition-transform"><polyline points="9 18 15 12 9 6"/></svg>
+          </span>
         </a>
       </div>
     </div>
   </div>
-
-  <!-- Scroll Indicator -->
-  <a
-    href="#nosotros"
-    class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 animate-bounce"
-    aria-label="Scroll down"
-  >
-    <!-- ChevronDown SVG -->
-    <svg width="32" height="32" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
-  </a>
 </section>
+
+<style>
+  @keyframes gradient {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% auto;
+    animation: gradient 3s ease infinite;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+    80% {
+      transform: translateY(12px);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 2s ease-in-out infinite;
+  }
+</style>

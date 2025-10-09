@@ -1,0 +1,218 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const locations = [
+  {
+    name: 'Delisano',
+    address: 'Calle Limache 3405, Viña del Mar',
+    phone: '+56 9 3231 4819',
+    email: 'contactodelisano@gmail.com',
+    logo: '/logos/delisano.webp',
+    image: '/ubicaciones/delisano.webp',
+    maps: 'https://www.google.com/maps?q=Calle+Limache+3405,+Viña+del+Mar',
+    description: 'Casino corporativo con servicio de alimentación saludable y variada para tu empresa.'
+  },
+  {
+    name: 'Café Club',
+    address: 'Av. Padre Hurtado 750, Viña del Mar',
+    phone: '+56 9 3231 4824',
+    email: 'cafeclub.uai@gmail.com',
+    logo: '/logos/cafe.webp',
+    image: '/ubicaciones/cafe.webp',
+    maps: 'https://www.google.com/maps?q=Av.+Padre+Hurtado+750,+Viña+del+Mar',
+    description: 'Cafetería universitaria con opciones gourmet y ambiente acogedor.'
+  },
+  {
+    name: 'Mantagua Casino Gasvalpo',
+    address: 'Camino Internacional 1420, Viña del Mar',
+    phone: '+56 9 5218 3061',
+    email: 'casinomantagua.gasvalpo@gmail.com',
+    logo: '/logos/man.webp',
+    image: '/ubicaciones/man.webp',
+    maps: 'https://www.google.com/maps?q=Camino+Internacional+1420,+Viña+del+Mar',
+    description: 'Casino empresarial con propuestas gastronómicas innovadoras y nutritivas.'
+  }
+];
+--- 
+
+<Layout>
+  <Header />
+  
+  <!-- Hero Section -->
+  <section class="relative bg-gradient-to-br from-[#2C2416] via-[#3D3124] to-[#2C2416] pt-32 pb-20 overflow-hidden">
+    <!-- Patrón decorativo -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #D4AF37 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="text-center max-w-3xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-6 py-3 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white/90 text-sm font-medium mb-6">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          3 Ubicaciones en Viña del Mar
+        </div>
+        
+        <h1 class="text-5xl md:text-6xl font-bold mb-6">
+          <span class="text-white">Nuestros</span>
+          <span class="block bg-gradient-to-r from-[#D4AF37] via-[#F4A261] to-[#D4AF37] bg-clip-text text-transparent">Locales</span>
+        </h1>
+        
+        <p class="text-xl text-white/80 leading-relaxed">
+          Encuentra el local más cercano y descubre nuestras experiencias gastronómicas
+        </p>
+      </div>
+    </div>
+    
+    <!-- Decoración inferior -->
+    <div class="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-white to-transparent"></div>
+  </section>
+
+  <!-- Locations Grid -->
+  <main class="bg-white py-20">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 gap-16 max-w-7xl mx-auto">
+        {locations.map((loc, idx) => (
+          <div class="group">
+            <div class="bg-gradient-to-br from-gray-50 to-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100">
+              <div class={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0`}>
+                
+                <!-- Imagen y Logo -->
+                <div class="lg:w-1/2 relative overflow-hidden">
+                  <div class="relative h-[400px] lg:h-full min-h-[400px]">
+                    <img 
+                      src={loc.image} 
+                      alt={loc.name} 
+                      class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
+                    
+                    <!-- Logo flotante -->
+                    <div class="absolute top-6 left-6 bg-white rounded-2xl p-4 shadow-2xl group-hover:scale-110 transition-transform duration-300">
+                      <img src={loc.logo} alt={loc.name + ' logo'} class="h-16 w-auto" />
+                    </div>
+                    
+                    <!-- Badge -->
+                    <div class="absolute bottom-6 left-6 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white px-6 py-2 rounded-full font-semibold text-sm shadow-lg">
+                      Local {idx + 1}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Información -->
+                <div class="lg:w-1/2 p-8 lg:p-12 flex flex-col justify-center">
+                  <h2 class="text-3xl lg:text-4xl font-bold text-gray-800 mb-4 group-hover:text-[#D4AF37] transition-colors">
+                    {loc.name}
+                  </h2>
+                  
+                  <p class="text-gray-600 mb-6 leading-relaxed">
+                    {loc.description}
+                  </p>
+
+                  <!-- Detalles de contacto -->
+                  <div class="space-y-4 mb-8">
+                    <div class="flex items-start gap-4 group/item">
+                      <div class="w-12 h-12 bg-gradient-to-br from-[#D4AF37]/10 to-[#B8941F]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover/item:scale-110 transition-transform">
+                        <svg width="20" height="20" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                      </div>
+                      <div class="flex-1">
+                        <p class="text-sm text-gray-500 mb-1">Dirección</p>
+                        <p class="text-gray-800 font-medium">{loc.address}</p>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 group/item">
+                      <div class="w-12 h-12 bg-gradient-to-br from-[#D4AF37]/10 to-[#B8941F]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover/item:scale-110 transition-transform">
+                        <svg width="20" height="20" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.25.72 3.32a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.07.35 2.19.59 3.32.72A2 2 0 0 1 22 16.92z"/></svg>
+                      </div>
+                      <div class="flex-1">
+                        <p class="text-sm text-gray-500 mb-1">Teléfono</p>
+                        <a href={`tel:${loc.phone}`} class="text-gray-800 font-medium hover:text-[#D4AF37] transition-colors">{loc.phone}</a>
+                      </div>
+                    </div>
+
+                    <div class="flex items-start gap-4 group/item">
+                      <div class="w-12 h-12 bg-gradient-to-br from-[#D4AF37]/10 to-[#B8941F]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover/item:scale-110 transition-transform">
+                        <svg width="20" height="20" fill="none" stroke="#D4AF37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><polyline points="3,7 12,13 21,7"/></svg>
+                      </div>
+                      <div class="flex-1">
+                        <p class="text-sm text-gray-500 mb-1">Email</p>
+                        <a href={`mailto:${loc.email}`} class="text-gray-800 font-medium hover:text-[#D4AF37] transition-colors break-all">{loc.email}</a>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Botones de acción -->
+                  <div class="flex flex-col sm:flex-row gap-4">
+                    <a 
+                      href={loc.maps} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="flex-1 group/btn relative px-6 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-xl font-semibold overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-xl text-center"
+                    >
+                      <span class="relative z-10 flex items-center justify-center gap-2">
+                        Ver en Google Maps
+                        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="group-hover/btn:translate-x-1 transition-transform"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                      </span>
+                      <div class="absolute inset-0 bg-gradient-to-r from-[#B8941F] to-[#D4AF37] opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300"></div>
+                    </a>
+                    
+                    <a 
+                      href={`tel:${loc.phone}`}
+                      class="flex-1 px-6 py-4 bg-white border-2 border-[#D4AF37] text-[#D4AF37] rounded-xl font-semibold hover:bg-[#D4AF37] hover:text-white transition-all duration-300 hover:scale-105 text-center flex items-center justify-center gap-2"
+                    >
+                      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M22 16.92V19a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3 5.18 2 2 0 0 1 5 3h2.09a2 2 0 0 1 2 1.72c.13 1.13.37 2.25.72 3.32a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.29 6.29l1.27-1.27a2 2 0 0 1 2.11-.45c1.07.35 2.19.59 3.32.72A2 2 0 0 1 22 16.92z"/></svg>
+                      Llamar
+                    </a>
+                  </div>
+
+                  <!-- Mapa integrado -->
+                  <div class="mt-8 rounded-2xl overflow-hidden border-4 border-gray-100 shadow-lg">
+                    <iframe
+                      src={`https://www.google.com/maps?q=${encodeURIComponent(loc.address)}&output=embed`}
+                      width="100%"
+                      height="250"
+                      style="border:0;"
+                      allowfullscreen=""
+                      loading="lazy"
+                      referrerpolicy="no-referrer-when-downgrade"
+                      title={`Mapa de ${loc.name}`}
+                    ></iframe>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </main>
+
+  <!-- CTA Section -->
+  <section class="bg-gradient-to-br from-[#2C2416] via-[#3D3124] to-[#2C2416] py-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-5">
+      <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #D4AF37 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+          ¿Listo para visitarnos?
+        </h2>
+        <p class="text-xl text-white/80 mb-8">
+          Contáctanos para conocer más sobre nuestros servicios y experiencias gastronómicas
+        </p>
+        <a 
+          href="#contacto"
+          class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-full font-semibold hover:scale-105 hover:shadow-2xl transition-all duration-300"
+        >
+          Solicitar Información
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>

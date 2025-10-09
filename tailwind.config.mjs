@@ -5,6 +5,7 @@ export default {
       colors: {
         'gold': '#C79F3F',
         'gold-dark': '#A88536',
+        'naranja': '#ffbe0b',
  
       },
     },

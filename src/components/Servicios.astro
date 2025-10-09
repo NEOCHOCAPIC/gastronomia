@@ -1,85 +1,181 @@
 ---
 const services = [
   {
-    icon: `<svg class='w-6 h-6' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><rect x='3' y='7' width='18' height='13' rx='2'/><path d='M6 7V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v3'/></svg>`,
-    title: "Casinos Corporativos",
+
     description: "Gestión integral de comedores empresariales con menús balanceados y variados",
+    features: ["Menús personalizados", "Gestión nutricional", "Servicio diario"],
     image: "/2.jpg",
   },
   {
-    icon: `<svg class='w-6 h-6' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M9 9v6h6V9H9z'/><rect x='3' y='3' width='18' height='18' rx='2'/></svg>`,
     title: "Casinos por Concesión",
     description: "Administración profesional de espacios de alimentación bajo modelo de concesión",
+    features: ["Modelo flexible", "Inversión optimizada", "Resultados garantizados"],
     image: "/3.jpg",
   },
   {
-    icon: `<svg class='w-6 h-6' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M4 21v-7a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v7'/><path d='M12 17v-6'/><path d='M8 21v-7'/><path d='M16 21v-7'/></svg>`,
     title: "Restaurantes",
     description: "Operación completa de restaurantes con estándares de calidad superiores",
+    features: ["Cocina gourmet", "Servicio premium", "Ambiente excepcional"],
     image: "/4.png",
   },
   {
-    icon: `<svg class='w-6 h-6' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M18 8a6 6 0 0 0-12 0c0 3.31 2.69 6 6 6s6-2.69 6-6z'/><path d='M6 8v2a6 6 0 0 0 12 0V8'/></svg>`,
     title: "Cafeterías",
     description: "Espacios acogedores con café de especialidad y opciones saludables",
+    features: ["Café premium", "Repostería artesanal", "Ambiente acogedor"],
     image: "/5.jpg",
   },
   {
-    icon: `<svg class='w-6 h-6' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M12 2v20'/><path d='M2 12h20'/></svg>`,
     title: "Banquetería",
     description: "Eventos corporativos y sociales con servicio personalizado de excelencia",
+    features: ["Eventos a medida", "Servicio impecable", "Experiencias únicas"],
     image: "/6.jpg",
   },
   {
-    icon: `<svg class='w-6 h-6' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><rect x='9' y='9' width='6' height='6'/><rect x='3' y='3' width='18' height='18' rx='2'/></svg>`,
     title: "Asesoría Nutricional",
     description: "Planes alimenticios equilibrados diseñados por nutricionistas expertos",
+    features: ["Planes personalizados", "Seguimiento continuo", "Resultados medibles"],
     image: "/7.jpg",
   },
   {
-    icon: `<svg class='w-6 h-6' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><path d='M17 21v-2a4 4 0 0 0-8 0v2'/><circle cx='12' cy='7' r='4'/><path d='M22 21v-2a4 4 0 0 0-3-3.87'/><path d='M6 17.13A4 4 0 0 0 3 21v2'/></svg>`,
     title: "Asesoría Administrativa",
     description: "Optimización de procesos y gestión eficiente de operaciones gastronómicas",
+    features: ["Procesos eficientes", "Control de costos", "Mejora continua"],
     image: "/8.jpg",
   },
   {
-    icon: `<svg class='w-6 h-6' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><rect x='9' y='9' width='6' height='6'/><rect x='3' y='3' width='18' height='18' rx='2'/></svg>`,
     title: "Asesoría de Calidad",
     description: "Implementación de estándares y certificaciones de calidad alimentaria",
+    features: ["Certificaciones", "Protocolos HACCP", "Auditorías"],
     image: "/9.jpg",
   },
 ];
 ---
-<section id="servicios" class="py-20 bg-white">
-  <div class="container mx-auto px-4 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl lg:text-5xl font-serif font-bold text-gold-dark  mb-4">
-       Servicios
+
+<section id="servicios" class="relative py-24 overflow-hidden">
+  <!-- Fondo con gradiente -->
+  <div class="absolute inset-0 bg-gradient-to-b from-white via-[#F8F6F3] to-white"></div>
+  
+  <!-- Patrón decorativo -->
+  <div class="absolute inset-0 opacity-[0.02]">
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #D4AF37 1px, transparent 0); background-size: 40px 40px;"></div>
+  </div>
+
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <div class="inline-flex items-center gap-2 px-6 py-3 bg-white border border-gray-200 rounded-full text-gray-600 text-sm font-medium mb-6 shadow-sm">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Lo que hacemos mejor
+      </div>
+      
+      <h2 class="text-5xl lg:text-6xl font-bold mb-6">
+        <span class="text-gray-800">Nuestros</span>
+        <span class="block bg-gradient-to-r from-[#D4AF37] via-[#F4A261] to-[#D4AF37] bg-clip-text text-transparent">Servicios</span>
       </h2>
-      <div class="w-20 h-1 bg-primary mx-auto mb-6"></div>
-      <p class="text-xl text-gray-700 max-w-3xl mx-auto">
-        Soluciones gastronómicas integrales para empresas, instituciones educativas y eventos
+      
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+        Soluciones gastronómicas integrales diseñadas para empresas, instituciones educativas y eventos especiales
       </p>
     </div>
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {services.map((service, index) => {
-        return (
-          <div class="group relative overflow-hidden rounded-xl shadow-md  bg-white">
-            <!-- Image Background -->
-            <div class="relative h-48 overflow-hidden">
-              <div class="absolute inset-0 bg-cover bg-center" style={`background-image: url('${service.image}')`}></div>
+
+    <!-- Services Grid con diseño moderno -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      {services.map((service, index) => (
+        <div 
+          class="service-card group relative"
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <!-- Card principal -->
+          <div class="relative h-full bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 border border-gray-100">
+            
+            <!-- Imagen con overlay -->
+            <div class="relative h-56 overflow-hidden">
+              <div 
+                class="absolute inset-0 bg-cover bg-center transform group-hover:scale-110 transition-transform duration-700"
+                style={`background-image: url('${service.image}')`}
+              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+              
+
             </div>
-            <!-- Content -->
-            <div class="p-6 relative">
-              <div class="w-12 h-12  rounded-lg flex items-center justify-center mb-4 ">
-                <span set:html={service.icon}></span>
-              </div>
-              <h3 class="text-xl font-bold text-gray-700 mb-2">{service.title}</h3>
-              <p class=" text-sm  text-gray-600 leading-relaxed">{service.description}</p>
+
+            <!-- Contenido -->
+            <div class="p-6">
+              <h3 class="text-xl font-bold text-gray-800 mb-3 group-hover:text-[#D4AF37] transition-colors duration-300">
+                {service.title}
+              </h3>
+              
+              <p class="text-gray-600 text-sm leading-relaxed mb-4">
+                {service.description}
+              </p>
+
+              <!-- Features con checkmarks -->
+              <ul class="space-y-2 mb-6">
+                {service.features.map((feature) => (
+                  <li class="flex items-center gap-2 text-sm text-gray-700">
+                    <svg width="16" height="16" class="text-[#D4AF37] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <!-- Botón -->
+              <button class="w-full px-4 py-3 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group/btn">
+                <span>Más Información</span>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="group-hover/btn:translate-x-1 transition-transform">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </button>
             </div>
+
+            <!-- Decoración esquina inferior -->
+            <div class="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-[#D4AF37]/5 to-transparent rounded-full -mb-16 -ml-16 group-hover:scale-150 transition-transform duration-700"></div>
           </div>
-        );
-      })}
+        </div>
+      ))}
+    </div>
+
+    <!-- CTA Section -->
+    <div class="mt-20 text-center">
+      <div class="inline-flex flex-col items-center gap-4 bg-white rounded-3xl p-10 shadow-xl border border-gray-100 max-w-2xl mx-auto">
+        <div class="w-16 h-16 bg-gradient-to-br from-[#D4AF37] to-[#B8941F] rounded-2xl flex items-center justify-center mb-2">
+          <svg width="28" height="28" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold text-gray-800">¿No encuentras lo que buscas?</h3>
+        <p class="text-gray-600">Contáctanos para crear una solución personalizada para tu empresa</p>
+        <a 
+          href="#contacto" 
+          class="px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-full font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+        >
+          Hablar con un Asesor
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </section>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .service-card {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .service-card {
+      animation: none;
+      opacity: 1;
+    }
+  }
+</style>

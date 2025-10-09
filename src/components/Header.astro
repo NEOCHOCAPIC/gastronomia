@@ -1,39 +1,37 @@
 ---
 const navItems = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Nosotros", href: "#nosotros" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Valores", href: "#valores" },
+  { label: "Inicio", href: "/" },
+  { label: "Quienes Somos", href: "sobre-nosotros" },
+  { label: "Servicios", href: "servicios" },
+  { label: "Nuestros Locales", href: "ubicaciones" },
 ];
 ---
 
-<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-smooth bg-transparent">
+<header id="main-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/98 backdrop-blur-md shadow-lg border-b border-gray-200">
   <div class="container mx-auto px-4 lg:px-8">
     <div class="flex items-center justify-between h-20">
-      <a href="#inicio" class="relative h-40 w-auto transition-smooth hover:opacity-80 block">
+      <a href="/" class="relative h-40 w-auto transition-all duration-300 hover:scale-105 block">
         <img
           src="/Logo.webp"
           alt="Mantagua Gastronomía"
-          class="object-contain w-full h-full"
+          class="object-contain w-full h-full drop-shadow-lg"
           loading="eager"
-      
-  />
+        />
       </a>
       <nav class="hidden md:flex items-center gap-8">
         {navItems.map(item => (
-          <a href={item.href} class="text-sm font-medium text-gold-dark hover:text-gold transition-smooth relative group">
+          <a href={item.href} class="text-sm font-medium text-gray-800 hover:text-[#D4AF37] transition-all duration-300 relative group">
             {item.label}
-            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gold transition-all duration-300 group-hover:w-full"></span>
+            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-[#D4AF37] transition-all duration-300 group-hover:w-full"></span>
           </a>
-  
-      ))}
-        <a href="#contacto" class="px-6 py-2.5 bg-gold-dark text-white rounded-full font-medium hover:bg-gold-dark">
+        ))}
+        <a href="#contacto" class="px-6 py-2.5 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
           Contáctanos
         </a>
       </nav>
-      <button id="menu-btn" class="md:hidden p-2 text-gray-light hover:text-gold transition-smooth" aria-label="Toggle menu" style="background:none;border:none;">
+      <button id="menu-btn" class="md:hidden p-2 text-gray-800 hover:text-[#D4AF37] transition-all duration-300" aria-label="Toggle menu" style="background:none;border:none;">
         <span id="menu-icon">
-                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </span>
         <span id="close-icon" style="display:none;">
           <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
@@ -41,41 +39,34 @@ const navItems = [
       </button>
     </div>
  
-   <nav id="mobile-nav" class="md:hidden py-4 border-t border-gray-dark animate-fade-in" style="display:none;">
+    <nav id="mobile-nav" class="md:hidden py-4 border-t border-gray-200 bg-white animate-fade-in" style="display:none;">
       {navItems.map(item => (
-        <a href={item.href} class="block py-3 text-gray-light hover:text-gold transition-smooth" onclick="closeMobileMenu()">{item.label}</a>
+        <a href={item.href} class="block py-3 text-gray-800 hover:text-[#D4AF37] transition-all duration-300 hover:translate-x-2" onclick="closeMobileMenu()">{item.label}</a>
       ))}
-      <a href="#contacto" class="block mt-4 px-6 py-2.5 bg-gold text-white rounded-full font-medium text-center hover:bg-gold-dark transition-smooth" onclick="closeMobileMenu()">Contáctanos</a>
+      <a href="#contacto" class="block mt-4 px-6 py-2.5 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-full font-medium text-center hover:shadow-lg transition-all duration-300" onclick="closeMobileMenu()">Contáctanos</a>
     </nav>
   </div>
   <script is:inline>
-    window.addEventListener('scroll', () => {
-      const header = document.getElementById('main-header');
-if (window.scrollY > 20) {
-        // Se mantiene el fondo blanco/semitransparente con desenfoque al hacer scroll.
-        header.classList.add('bg-white/95', 'backdrop-blur-sm', 'shadow-md');
-        header.classList.remove('bg-transparent');
-} else {
-        header.classList.remove('bg-white/95', 'backdrop-blur-sm', 'shadow-md');
-        header.classList.add('bg-transparent');
-      }
-    });
-const menuBtn = document.getElementById('menu-btn');
+    // El header siempre empieza con fondo blanco
+    const header = document.getElementById('main-header');
+    const menuBtn = document.getElementById('menu-btn');
     const mobileNav = document.getElementById('mobile-nav');
     const menuIcon = document.getElementById('menu-icon');
     const closeIcon = document.getElementById('close-icon');
     let mobileOpen = false;
-menuBtn.addEventListener('click', () => {
+
+    menuBtn.addEventListener('click', () => {
       mobileOpen = !mobileOpen;
       mobileNav.style.display = mobileOpen ? 'block' : 'none';
       menuIcon.style.display = mobileOpen ? 'none' : 'inline';
       closeIcon.style.display = mobileOpen ? 'inline' : 'none';
     });
-window.closeMobileMenu = function() {
+
+    window.closeMobileMenu = function() {
       mobileOpen = false;
       mobileNav.style.display = 'none';
       menuIcon.style.display = 'inline';
-closeIcon.style.display = 'none';
+      closeIcon.style.display = 'none';
     }
   </script>
 </header>
