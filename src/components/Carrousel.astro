@@ -1,0 +1,123 @@
+---
+const clients = [
+  { name: "ALS", logo: "/clientes/ALS.png" },
+  { name: "ASIVA", logo: "/clientes/ASIVA.png" },
+  { name: "CIN", logo: "/clientes/CIN.png" },
+  { name: "DHELOS", logo: "/clientes/DHELOS.jpg" },
+  { name: "DIVING", logo: "/clientes/DIVING.jpg" },
+//   { name: "ECOTECNOS", logo: "/clientes/ECOTECNOS.png" },
+  { name: "EMT", logo: "/clientes/EMT.webp" },
+  { name: "FIORDOSUR", logo: "/clientes/FIORDOSUR.png" },
+  { name: "GASVALPO", logo: "/clientes/GASVALPO.jpg" },
+  { name: "HUMBOLDT", logo: "/clientes/HUMBOLDT.png" },
+  { name: "INPROMEC", logo: "/clientes/INPROMEC.png" },
+  { name: "KAUFEN", logo: "/clientes/KAUFEN.jpg" },
+  { name: "MARINE", logo: "/clientes/MARINE.png" },
+  { name: "MIRAMAR", logo: "/clientes/MIRAMAR.png" },
+  { name: "RAMEK", logo: "/clientes/RAMEK.png" },
+  { name: "SANTIBAÑEZ", logo: "/clientes/SANTIBAÑEZ.png" },
+  { name: "SOPRODI", logo: "/clientes/SOPRODI.png" },
+  { name: "UAI", logo: "/clientes/UAI.jpg" },
+  { name: "ULTRANAV", logo: "/clientes/ULTRANAV.png" },
+  { name: "ULTRATUG", logo: "/clientes/ULTRATUG.png" },
+  { name: "V21", logo: "/clientes/V21.png" },
+  { name: "ZAREY", logo: "/clientes/ZAREY.webp" },
+];
+---
+
+<section id="clientes" class="relative overflow-hidden border-[#D4AF37]  border-y-2 border-wm-orange/30">
+  <div class="max-w-8xl mx-auto">
+    <!-- Carousel Container -->
+    <div class="relative">
+      <!-- Fade gradients on sides -->
+      <div
+        class="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"
+      >
+      </div>
+      <div
+        class="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"
+      >
+      </div>
+
+      <!-- Carousel Track -->
+      <div class="carousel-track flex items-center gap-8 py-6">
+        <!-- First set of logos -->
+        {
+          clients
+            .filter((client) => client.logo)
+            .map((client) => (
+              <a
+                rel="noopener noreferrer"
+                class="carousel-item flex-shrink-0 hover:scale-110 transition-transform duration-300"
+              >
+                <div class="w-auto h-20 flex items-center justify-center px-4">
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    class="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              </a>
+            ))
+        }
+
+        <!-- Duplicate set for seamless loop -->
+        {
+          clients
+            .filter((client) => client.logo)
+            .map((client) => (
+              <a
+                rel="noopener noreferrer"
+                class="carousel-item flex-shrink-0 hover:scale-110 transition-transform duration-300"
+              >
+                <div class="w-40 h-20 flex items-center justify-center px-4">
+                  <img
+                    src={client.logo}
+                    alt={client.name}
+                    class="max-w-full max-h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              </a>
+            ))
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .carousel-track {
+    animation: scroll 35s linear infinite;
+    width: max-content;
+  }
+
+  .carousel-track:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .carousel-item {
+    min-width: 180px;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .carousel-track {
+      animation-duration: 25s;
+    }
+
+    .carousel-item {
+      min-width: 160px;
+    }
+  }
+</style>

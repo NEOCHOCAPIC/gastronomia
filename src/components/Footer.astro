@@ -4,19 +4,19 @@ const contacts = [
     name: 'Delisano',
     phone: '+56 9 3231 4819',
     email: 'contactodelisano@gmail.com',
-    logo: '/logos/delisano.webp',
+    logo: '/logos/LOGO_DELISANO.webp',
   },
   {
     name: 'Café Club',
     phone: '+56 9 3231 4824',
     email: 'cafeclub.uai@gmail.com',
-    logo: '/logos/cafe.webp',
+    logo: '/logos/LOGO_UAI.webp',
   },
   {
     name: 'Mantagua Casino Gasvalpo',
     phone: '+56 9 5218 3061',
     email: 'casinomantagua.gasvalpo@gmail.com',
-    logo: '/logos/man.webp',
+    logo: '/logos/LOGO_GASVALPO.webp',
   },
 ];
 ---
@@ -31,7 +31,7 @@ const contacts = [
       <!-- Columna 1: Branding y contacto principal -->
       <div class="flex flex-col items-center md:items-start space-y-6">
         <div class="bg-white p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
-          <img src="/Logo.webp" alt="Mantagua Gastronomía" class="h-16 w-auto" />
+          <img src="/logos/LOGO_MANTAGUA.webp" alt="Mantagua Gastronomía" class="h-24 w-auto" />
         </div>
         
         <div>
@@ -84,8 +84,8 @@ const contacts = [
         <div class="flex flex-col gap-5 w-full">
           {contacts.map((c) => (
             <div class="flex items-start gap-4 p-4 rounded-xl bg-white hover:shadow-lg transition-all duration-300 group border border-gray-100">
-              <div class="w-14 h-14 rounded-full bg-gradient-to-br from-gray-50 to-gray-100 p-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-                <img src={c.logo} alt={c.name + ' logo'} class="w-full h-full rounded-full object-cover" />
+              <div class="w-20 h-20 rounded-full bg-gradient-to-br from-gray-50 to-gray-100 p-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                <img src={c.logo} alt={c.name + ' logo'} class="w-full h-full rounded-full  object-contain" />
               </div>
               <div class="flex-1 min-w-0">
                 <h4 class="font-bold text-gray-800 mb-1 group-hover:text-[#D4AF37] transition-colors">{c.name}</h4>
@@ -104,33 +104,33 @@ const contacts = [
       <div class="flex flex-col items-center md:items-start">
         <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
           <span class="w-8 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent"></span>
-          <span class="text-gray-800">Enlaces Útiles</span>
+          <span class="text-gray-800">Enlaces Rapidos</span>
         </h3>
         <ul class="flex flex-col gap-3 w-full mb-6">
           <li>
-            <a href="#servicios" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
+            <a href="/servicios" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
               <span class="w-2 h-2 bg-[#D4AF37] rounded-full group-hover:w-6 transition-all duration-300"></span>
               <span class="text-gray-700 group-hover:text-[#D4AF37] font-medium transition-colors">Servicios</span>
             </a>
           </li>
           <li>
-            <a href="#nosotros" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
+            <a href="/sobre-nosotros" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
               <span class="w-2 h-2 bg-[#D4AF37] rounded-full group-hover:w-6 transition-all duration-300"></span>
               <span class="text-gray-700 group-hover:text-[#D4AF37] font-medium transition-colors">Sobre Nosotros</span>
             </a>
           </li>
           <li>
-            <a href="#ubicaciones" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
+            <a href="/ubicaciones" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
               <span class="w-2 h-2 bg-[#D4AF37] rounded-full group-hover:w-6 transition-all duration-300"></span>
               <span class="text-gray-700 group-hover:text-[#D4AF37] font-medium transition-colors">Ubicaciones</span>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="#" class="flex items-center gap-3 p-3 rounded-lg hover:bg-white transition-all duration-300 group">
               <span class="w-2 h-2 bg-[#D4AF37] rounded-full group-hover:w-6 transition-all duration-300"></span>
               <span class="text-gray-700 group-hover:text-[#D4AF37] font-medium transition-colors">Política de Privacidad</span>
             </a>
-          </li>
+          </li> -->
         </ul>
 
         <!-- CTA botón -->
