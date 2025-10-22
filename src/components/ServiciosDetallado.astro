@@ -1,0 +1,254 @@
+---
+const serviciosDetallados = [
+  {
+    id: 1,
+    title: "Comedores Empresariales",
+    description: "Gestión integral de espacios de alimentación para empresas con menús balanceados, variados y personalizados según necesidades nutricionales.",
+    longDescription: "Administramos comedores corporativos completos, desde la planificación de menús hasta la ejecución diaria. Nuestro equipo garantiza experiencias gastronómicas de calidad que mejoran la productividad y bienestar de los colaboradores.",
+    features: [
+      "Menús personalizados y balanceados",
+      "Gestión nutricional profesional",
+      "Servicio diario consistente",
+      "Horarios flexibles",
+      "Control de costos optimizado"
+    ],
+    images: ["/2.jpg", "/3.jpg"],
+    bgColor: "from-[#D4AF37]/10 to-[#B8941F]/10",
+    accentColor: "[#D4AF37]"
+  },
+  {
+    id: 2,
+    title: "Casinos por Concesión",
+    description: "Administración profesional de espacios de alimentación bajo modelo de concesión, con máxima rentabilidad y gestión eficiente.",
+    longDescription: "Nuestro modelo de concesión ofrece flexibilidad, inversión optimizada y resultados garantizados. Nos encargamos de toda la operación mientras maximizamos la rentabilidad de tu negocio.",
+    features: [
+      "Modelo flexible y adaptable",
+      "Inversión optimizada",
+      "Resultados garantizados",
+      "Operación completa",
+      "Reportes transparentes"
+    ],
+    images: ["/4.png", "/5.jpg"],
+    bgColor: "from-[#D4AF37]/10 to-[#B8941F]/10",
+    accentColor: "[#D4AF37]"
+  },
+  {
+    id: 3,
+    title: "Restaurantes",
+    description: "Operación completa de restaurantes con estándares de calidad superior, cocina gourmet y servicio premium excepcional.",
+    longDescription: "Gestionamos restaurantes con enfoque en experiencia gastronómica excepcional. Desde la selección de ingredientes hasta el servicio final, cada detalle refleja nuestro compromiso con la excelencia.",
+    features: [
+      "Cocina gourmet de calidad",
+      "Servicio premium profesional",
+      "Ambiente y decoración excepcional",
+      "Gestión de inventarios",
+      "Certificación de calidad"
+    ],
+    images: ["/6.jpg", "/7.jpg"],
+    bgColor: "from-[#D4AF37]/10 to-[#B8941F]/10",
+    accentColor: "[#D4AF37]"
+  },
+  {
+    id: 4,
+    title: "Cafeterías",
+    description: "Espacios acogedores con café de especialidad, opciones saludables y ambiente ideal para relajación y productividad.",
+    longDescription: "Nuestras cafeterías combinan atmósfera acogedora con productos de primera calidad. Café premium, repostería artesanal y opciones saludables crean la experiencia perfecta.",
+    features: [
+      "Café de especialidad premium",
+      "Repostería artesanal",
+      "Ambiente acogedor",
+      "Opciones saludables",
+      "Diseño moderno"
+    ],
+    images: ["/8.jpg", "/9.jpg"],
+    bgColor: "from-[#D4AF37]/10 to-[#B8941F]/10",
+    accentColor: "[#D4AF37]"
+  },
+  {
+    id: 5,
+    title: "Banquetería",
+    description: "Eventos corporativos y sociales con servicio personalizado, menús exclusivos y experiencias gastronómicas memorables.",
+    longDescription: "Transformamos tus eventos en experiencias gastronómicas inolvidables. Servicio impecable, menús a medida y atención al detalle en cada aspecto.",
+    features: [
+      "Eventos a medida",
+      "Servicio impecable",
+      "Menús personalizados",
+      "Experiencias únicas",
+      "Coordinación completa"
+    ],
+    images: ["/2.jpg", "/3.jpg"],
+    bgColor: "from-[#D4AF37]/10 to-[#B8941F]/10",
+    accentColor: "[#D4AF37]"
+  }
+];
+
+const asesorias = [
+  {
+    title: "Asesoría Nutricional",
+    description: "Planes alimenticios equilibrados diseñados por nutricionistas expertos para optimizar la salud y bienestar.",
+    icon: `<svg class='w-12 h-12' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><circle cx='12' cy='12' r='1'/><path d='M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8M21 3v6h-6M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16M3 21v-6h6'/></svg>`,
+    features: ["Planes personalizados", "Seguimiento continuo", "Resultados medibles"]
+  },
+  {
+    title: "Asesoría Administrativa",
+    description: "Optimización de procesos y gestión eficiente de operaciones gastronómicas con control de costos.",
+    icon: `<svg class='w-12 h-12' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><line x1='12' y1='5' x2='12' y2='19'/><line x1='5' y1='12' x2='19' y2='12'/></svg>`,
+    features: ["Procesos eficientes", "Control de costos", "Mejora continua"]
+  },
+  {
+    title: "Asesoría de Calidad",
+    description: "Implementación de estándares y certificaciones de calidad alimentaria con protocolos HACCP.",
+    icon: `<svg class='w-12 h-12' fill='none' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round' viewBox='0 0 24 24'><polyline points='20 6 9 17 4 12'/></svg>`,
+    features: ["Certificaciones", "Protocolos HACCP", "Auditorías"]
+  }
+];
+---
+
+<section class="relative py-24 bg-white overflow-hidden">
+  <!-- Decoración superior -->
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <!-- Header principal -->
+    <div class="text-center mb-20">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#D4AF37]/10 border border-[#D4AF37]/30 rounded-full mb-6">
+        <div class="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
+        <span class="text-sm font-semibold text-[#D4AF37]">Servicios Detallados</span>
+      </div>
+      <h2 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+        Soluciones
+        <span class="bg-gradient-to-r from-[#D4AF37] to-[#B8941F] bg-clip-text text-transparent"> Gastronómicas</span>
+      </h2>
+      <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+        Cada servicio diseñado con profesionalismo, calidad y atención al detalle
+      </p>
+    </div>
+
+    <!-- Servicios Principales -->
+    <div class="space-y-16 mb-24">
+      {serviciosDetallados.map((servicio, index) => (
+        <div class={`relative overflow-hidden rounded-3xl shadow-xl border border-gray-100 ${index % 2 === 0 ? 'bg-white' : 'bg-gradient-to-br from-[#F8F6F3] to-white'}`}>
+          
+          <!-- Contenedor con grid -->
+          <div class="grid md:grid-cols-2 gap-0">
+            
+            <!-- Imágenes (alternadas según índice) -->
+            <div class={`relative h-96 md:h-full overflow-hidden group ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+              <div class="grid grid-cols-2 gap-4 p-6 h-full">
+                {servicio.images.map((img) => (
+                  <div class="relative overflow-hidden rounded-2xl">
+                    <div 
+                      class="absolute inset-0 bg-cover bg-center transform group-hover:scale-110 transition-transform duration-500"
+                      style={`background-image: url('${img}')`}
+                    ></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <!-- Contenido -->
+            <div class={`p-10 flex flex-col justify-center ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+              <!-- Badge de número -->
+              <div class="inline-flex items-center justify-center w-12 h-12 bg-gradient-to-br from-[#D4AF37] to-[#B8941F] rounded-full text-white font-bold mb-6 self-start">
+                {servicio.id}
+              </div>
+
+              <h3 class="text-4xl font-bold text-gray-900 mb-4">
+                {servicio.title}
+              </h3>
+
+              <p class="text-gray-700 text-lg leading-relaxed mb-6">
+                {servicio.longDescription}
+              </p>
+
+              <!-- Features con checkmarks -->
+              <div class="space-y-3 mb-8">
+                {servicio.features.map((feature) => (
+                  <div class="flex items-start gap-3">
+                    <div class="w-6 h-6 bg-[#D4AF37] rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <svg width="14" height="14" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    </div>
+                    <span class="text-gray-700 font-medium">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <!-- CTA Button -->
+              <a href="/contacto" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-xl font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 w-fit group/btn">
+                <span>Solicitar Información</span>
+                <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" class="group-hover/btn:translate-x-1 transition-transform">
+                  <polyline points="9 18 15 12 9 6"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Asesorías -->
+    <div class="mb-20">
+      <h3 class="text-4xl font-bold text-center text-gray-900 mb-16">
+        Servicios de
+        <span class="bg-gradient-to-r from-[#D4AF37] to-[#B8941F] bg-clip-text text-transparent"> Asesoría</span>
+      </h3>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {asesorias.map((asesoria) => (
+          <div class="group relative">
+            <!-- Decorative background -->
+            <div class="absolute -inset-4 bg-gradient-to-br from-[#D4AF37]/10 to-[#B8941F]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+
+            <!-- Card -->
+            <div class="relative bg-white rounded-3xl p-10 shadow-lg group-hover:shadow-2xl transition-all duration-500 border border-gray-100 h-full">
+              <!-- Icon -->
+              <div class="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/20 to-[#B8941F]/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                <span class="text-[#D4AF37]" set:html={asesoria.icon}></span>
+              </div>
+
+              <!-- Content -->
+              <h4 class="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[#D4AF37] transition-colors">
+                {asesoria.title}
+              </h4>
+              
+              <p class="text-gray-700 leading-relaxed mb-6">
+                {asesoria.description}
+              </p>
+
+              <!-- Features -->
+              <ul class="space-y-2">
+                {asesoria.features.map((feature) => (
+                  <li class="flex items-center gap-2 text-sm text-gray-700">
+                    <svg width="16" height="16" class="text-[#D4AF37]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <!-- Decorative line -->
+              <div class="w-12 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mt-6 group-hover:w-24 transition-all duration-500"></div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA Final -->
+    <div class="text-center pt-10">
+      <div class="inline-flex flex-col items-center gap-6 bg-gradient-to-br from-[#D4AF37]/10 to-[#B8941F]/10 rounded-3xl p-12 border border-[#D4AF37]/30 max-w-2xl mx-auto">
+        <h3 class="text-3xl font-bold text-gray-900">
+          ¿Necesitas una solución personalizada?
+        </h3>
+        <p class="text-gray-700">Nuestro equipo está listo para diseñar el servicio perfecto para tu empresa</p>
+        <a href="/contacto" class="px-10 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-full font-semibold hover:scale-105 hover:shadow-xl transition-all duration-300 flex items-center gap-2">
+          Contáctanos Ahora
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decoración inferior -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+</section>

@@ -12,7 +12,11 @@ const locations = [
     logo: '/logos/LOGO_DELISANO.webp',
     image: '/ubicaciones/delisano.webp',
     maps: 'https://www.google.com/maps?q=Calle+Limache+3405,+Viña+del+Mar',
-    description: 'Casino corporativo con servicio de alimentación saludable y variada para tu empresa.'
+    description: 'Casino corporativo con servicio de alimentación saludable y variada para tu empresa.',
+    instagram: {
+      url: 'https://www.instagram.com/gdelisano/',
+      user: '@gdelisano'
+    }
   },
   {
     name: 'Café Club',
@@ -22,7 +26,11 @@ const locations = [
     logo: '/logos/LOGO_UAI.webp',
     image: '/ubicaciones/cafe.webp',
     maps: 'https://www.google.com/maps?q=Av.+Padre+Hurtado+750,+Viña+del+Mar',
-    description: 'Cafetería universitaria con opciones gourmet y ambiente acogedor.'
+    description: 'Cafetería universitaria con opciones gourmet y ambiente acogedor.',
+    instagram: {
+      url: 'https://www.instagram.com/cafeclubuai/',
+      user: '@cafeclubuai'
+    }
   },
   {
     name: 'Mantagua Casino Gasvalpo',
@@ -32,7 +40,11 @@ const locations = [
     logo: '/logos/LOGO_GASVALPO.webp',
     image: '/ubicaciones/man.webp',
     maps: 'https://www.google.com/maps?q=Camino+Internacional+1420,+Viña+del+Mar',
-    description: 'Casino empresarial con propuestas gastronómicas innovadoras y nutritivas.'
+    description: 'Casino empresarial con propuestas gastronómicas innovadoras y nutritivas.',
+    instagram: {
+      url: 'https://www.instagram.com/mantaguacasinogasvalpo/',
+      user: '@mantaguacasinogasvalpo'
+    }
   }
 ];
 --- 
@@ -141,6 +153,18 @@ const locations = [
                         <a href={`mailto:${loc.email}`} class="text-gray-800 font-medium hover:text-[#D4AF37] transition-colors break-all">{loc.email}</a>
                       </div>
                     </div>
+
+                    {loc.instagram && (
+                      <div class="flex items-start gap-4 group/item">
+                        <div class="w-12 h-12 bg-gradient-to-br from-[#D4AF37]/10 to-[#B8941F]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover/item:scale-110 transition-transform">
+                          <svg width="20" height="20" fill="none" stroke="#D4AF37" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+                        </div>
+                        <div class="flex-1">
+                          <p class="text-sm text-gray-500 mb-1">Instagram</p>
+                          <a href={loc.instagram.url} target="_blank" rel="noopener" class="text-gray-800 font-medium hover:text-[#D4AF37] transition-colors">{loc.instagram.user}</a>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   <!-- Botones de acción -->
@@ -204,7 +228,7 @@ const locations = [
           Contáctanos para conocer más sobre nuestros servicios y experiencias gastronómicas
         </p>
         <a 
-          href="#contacto"
+          href="/contacto"
           class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-[#D4AF37] to-[#B8941F] text-white rounded-full font-semibold hover:scale-105 hover:shadow-2xl transition-all duration-300"
         >
           Solicitar Información

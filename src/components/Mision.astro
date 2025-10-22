@@ -1,41 +1,92 @@
 ---
 // No props needed
 ---
-<section class="py-20  bg-white">
-  <div class="container mx-auto px-4 lg:px-8">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl lg:text-5xl font-serif font-bold  mb-4">
-        Nuestro <span class="text-gold-dark">Propósito</span>
-      </h2>
-      <div class="w-32 h-1 bg-gold mx-auto"></div>
-    </div>
-    <div class="grid md:grid-cols-2 gap-8 lg:gap-12">
-      <!-- Mission -->
-      <div class="group relative bg-gray-200/50 p-8 lg:p-12 rounded-2xl hover:shadow-2xl">
-        <div class="absolute top-8 right-8 w-16 h-16  rounded-full flex items-center justify-center">
-          <!-- Target SVG -->
-          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
-        </div>
-        <h3 class="text-3xl font-serif font-bold  text-gray-700 mb-6">Misión</h3>
-        <p class="leading-relaxed  text-gray-600 text-lg">
-          Brindar experiencias de alimentación inteligente, promoviendo la libertad y la vida saludable, ofreciendo
-          recetas caseras, de gusto universal y equilibradas, en un ambiente grato y con alta calidad de servicio.
-        </p>
+<section class="relative py-24 bg-gradient-to-br from-white via-[#F8F6F3] to-white overflow-hidden">
+  <!-- Decoración superior -->
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
+
+  <!-- Patrón decorativo de fondo -->
+  <div class="absolute inset-0 opacity-[0.02]">
+    <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, #D4AF37 1px, transparent 0); background-size: 30px 30px;"></div>
+  </div>
+
+  <div class="container mx-auto px-4 lg:px-8 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-[#D4AF37]/10 border border-[#D4AF37]/30 rounded-full mb-6">
+        <div class="w-2 h-2 bg-[#D4AF37] rounded-full"></div>
+        <span class="text-sm font-semibold text-[#D4AF37]">Fundamentos</span>
       </div>
-      <!-- Vision -->
-      <div class="group relative p-8 lg:p-12 bg-gray-200/50 rounded-2xl hover:shadow-2xl">
-        <div class="absolute top-8 right-8 w-16 h-16 bg-white/10 rounded-full flex items-center justify-center">
-          <!-- Eye SVG -->
-          <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+      <h2 class="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+        Nuestro 
+        <span class="bg-gradient-to-r from-[#D4AF37] to-[#B8941F] bg-clip-text text-transparent">Propósito</span>
+      </h2>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        La base de quiénes somos y hacia dónde nos dirigimos
+      </p>
+    </div>
+
+    <!-- Mission y Vision -->
+    <div class="grid md:grid-cols-2 gap-8 lg:gap-12 mb-20">
+      <!-- Mission -->
+      <div class="group relative">
+        <!-- Decorative background -->
+        <div class="absolute -inset-4 bg-gradient-to-br from-[#D4AF37]/10 to-[#B8941F]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+        
+        <!-- Card -->
+        <div class="relative bg-white rounded-3xl p-8 lg:p-10 shadow-lg group-hover:shadow-2xl transition-all duration-500 border border-gray-100">
+          <!-- Icon -->
+          <div class="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/20 to-[#B8941F]/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+            <svg class="w-8 h-8 text-[#D4AF37]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+          </div>
+
+          <!-- Content -->
+          <h3 class="text-3xl font-bold text-gray-900 mb-4">Misión</h3>
+          <p class="text-gray-700 leading-relaxed text-lg">
+            Brindar <span class="font-semibold text-[#D4AF37]">experiencias de alimentación inteligente</span>, promoviendo la libertad y la vida saludable, ofreciendo recetas caseras, de gusto universal y equilibradas, en un ambiente grato y con alta calidad de servicio.
+          </p>
+
+          <!-- Decorative line -->
+          <div class="w-12 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mt-6 group-hover:w-24 transition-all duration-500"></div>
         </div>
-        <h3 class="text-3xl font-serif font-bold text-gray-700 mb-6">Visión</h3>
-        <p class="text-gray-600 leading-relaxed text-lg">
-          Consolidar nuestra organización, liderando la especialización en gastronomía para empresas, instituciones
-          educativas, y banquetería, incorporando la tecnología, promoviendo la vida saludable mediante una
-          alimentación inteligente, comprometidos con cada comunidad en la que nos insertamos y con la
-          sostenibilidad.
-        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="group relative">
+        <!-- Decorative background -->
+        <div class="absolute -inset-4 bg-gradient-to-br from-[#D4AF37]/10 to-[#B8941F]/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl"></div>
+        
+        <!-- Card -->
+        <div class="relative bg-white rounded-3xl p-8 lg:p-10 shadow-lg group-hover:shadow-2xl transition-all duration-500 border border-gray-100">
+          <!-- Icon -->
+          <div class="w-16 h-16 bg-gradient-to-br from-[#D4AF37]/20 to-[#B8941F]/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+            <svg class="w-8 h-8 text-[#D4AF37]" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+
+          <!-- Content -->
+          <h3 class="text-3xl font-bold text-gray-900 mb-4">Visión</h3>
+          <p class="text-gray-700 leading-relaxed text-lg">
+            Consolidar nuestra organización, <span class="font-semibold text-[#D4AF37]">liderando la especialización en gastronomía</span> para empresas, instituciones educativas y banquetería, incorporando la tecnología, promoviendo la vida saludable mediante alimentación inteligente, comprometidos con cada comunidad en la que nos insertamos y con la sostenibilidad.
+          </p>
+
+          <!-- Decorative line -->
+          <div class="w-12 h-1 bg-gradient-to-r from-[#D4AF37] to-transparent mt-6 group-hover:w-24 transition-all duration-500"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decoración -->
+    <div class="flex justify-center">
+      <div class="flex items-center gap-4">
+        <div class="w-20 h-1 bg-gradient-to-r from-transparent to-[#D4AF37]"></div>
+        <div class="w-3 h-3 rounded-full bg-[#D4AF37]"></div>
+        <div class="w-3 h-3 rounded-full bg-[#B8941F]"></div>
+        <div class="w-3 h-3 rounded-full bg-[#F4A261]"></div>
+        <div class="w-20 h-1 bg-gradient-to-l from-transparent to-[#D4AF37]"></div>
       </div>
     </div>
   </div>
+
+  <!-- Decoración inferior -->
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
 </section>
