@@ -2,11 +2,302 @@
 import Header from '../components/Header.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
+
+// Obtener dinámicamente todas las imágenes de la carpeta public/galeria
+const imageModules = import.meta.glob('../../public/galeria/*.{jpg,jpeg,png,webp,gif}', { eager: true });
+const images = Object.entries(imageModules)
+  .map(([path]) => {
+    const filename = path.split('/').pop();
+    return {
+      src: `/galeria/${filename}`,
+      alt: `Imagen de galería - ${filename}`,
+      type: 'image'
+    };
+  })
+  .sort((a, b) => {
+    const matchA = a.src.match(/\d+/);
+    const matchB = b.src.match(/\d+/);
+    const numA = matchA ? parseInt(matchA[0]) : 0;
+    const numB = matchB ? parseInt(matchB[0]) : 0;
+    return numA - numB;
+  });
+
+// Videos estáticos
+const videos = [
+  { src: '/videos/1.mp4', alt: 'Video de presentación', type: 'video' }
+];
+
+// Combinar imágenes y videos
+const allMedia = [...images, ...videos];
+
 ---
 <Layout title="Galería" description="Galería de imágenes de nuestros servicios y locales">
   <Header />
-  <main>
+  <main class="galeria-container">
+    <section class="galeria-header pt-20">
+      <h1>Nuestra Galería</h1>
+      <p>Disfruta de nuestros momentos especiales</p>
+    </section>
 
+    <section class="filtro-container">
+      <button class="filtro-btn activo" data-filter="todos">
+        Todos
+      </button>
+      <button class="filtro-btn" data-filter="image">
+        Imágenes
+      </button>
+      <button class="filtro-btn" data-filter="video">
+        Videos
+      </button>
+    </section>
+
+    <section class="galeria-grid" id="galeria-grid">
+      {allMedia.map((media) => (
+        <article class={`galeria-item ${media.type}`} data-type={media.type}>
+          {media.type === 'image' ? (
+            <img 
+              src={media.src} 
+              alt={media.alt}
+              loading="lazy"
+              class="galeria-imagen"
+            />
+          ) : (
+            <video 
+              autoplay 
+              muted 
+              loop 
+              playsinline
+              class="galeria-video"
+            >
+              <source src={media.src} type="video/mp4" />
+              Tu navegador no soporta videos HTML5
+            </video>
+          )}
+        </article>
+      ))}
+    </section>
   </main>
-     <Footer />
+  <Footer />
 </Layout>
+
+<style define:vars={{}}> 
+  .galeria-container {
+    padding: 3rem 1rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .galeria-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    animation: fadeIn 0.6s ease-in;
+  }
+
+  .galeria-header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1a1a1a;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .galeria-header p {
+    font-size: 1.1rem;
+    color: #666;
+    font-style: italic;
+  }
+
+  /* Filtro */
+  .filtro-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    animation: fadeIn 0.7s ease-in 0.1s both;
+  }
+
+  .filtro-btn {
+    padding: 0.75rem 1.5rem;
+    border: 2px solid #ddd;
+    background: white;
+    color: #333;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: capitalize;
+  }
+
+  .filtro-btn:hover {
+    border-color: #ff6b35;
+    color: #ff6b35;
+    transform: translateY(-2px);
+  }
+
+  .filtro-btn.activo {
+    background: #ff6b35;
+    color: white;
+    border-color: #ff6b35;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+  }
+
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+    animation: fadeIn 0.8s ease-in 0.2s both;
+  }
+
+  .galeria-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .galeria-item.oculto {
+    opacity: 0;
+    transform: scale(0.8);
+    pointer-events: none;
+    display: none;
+  }
+
+  .galeria-item.image:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .galeria-item.video:hover {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .galeria-imagen,
+  .galeria-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+  }
+
+  .galeria-item.image:hover .galeria-imagen {
+    transform: scale(1.1);
+  }
+
+  .galeria-item.video:hover .galeria-video {
+    transform: scale(1);
+  }
+
+  .imagen::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .galeria-grid {
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .galeria-header h1 {
+      font-size: 2rem;
+    }
+
+    .galeria-container {
+      padding: 2rem 1rem;
+    }
+
+    .filtro-container {
+      margin-bottom: 2rem;
+    }
+
+    .filtro-btn {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .galeria-grid {
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1rem;
+    }
+
+    .galeria-header h1 {
+      font-size: 1.5rem;
+    }
+
+    .galeria-header p {
+      font-size: 1rem;
+    }
+
+    .galeria-container {
+      padding: 1.5rem 0.5rem;
+    }
+
+    .filtro-container {
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .filtro-btn {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<script>
+  const filtroButtons = document.querySelectorAll('.filtro-btn');
+  const galeriaItems = document.querySelectorAll('.galeria-item');
+
+  filtroButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Remover clase activo de todos los botones
+      filtroButtons.forEach(btn => btn.classList.remove('activo'));
+      // Agregar clase activo al botón clickeado
+      button.classList.add('activo');
+
+      const filtro = button.getAttribute('data-filter');
+
+      galeriaItems.forEach(item => {
+        const tipo = item.getAttribute('data-type');
+        
+        if (filtro === 'todos' || filtro === tipo) {
+          item.classList.remove('oculto');
+          // Forzar reflow para que la animación se ejecute
+          void (item as HTMLElement).offsetHeight;
+        } else {
+          item.classList.add('oculto');
+        }
+      });
+    });
+  });
+</script>
