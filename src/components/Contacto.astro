@@ -32,6 +32,7 @@
         <!-- Formulario - Derecha -->
         <div class="md:col-span-2">
           <form id="contactForm" class="bg-white rounded-2xl shadow-lg p-8 border border-gray-100">
+            <div id="contact-status" style="display:none;" class="mb-4 p-3 rounded-lg text-center font-medium"></div>
             <div class="space-y-5">
               <!-- Nombre -->
               <div class="group">
@@ -151,52 +152,90 @@
   <div class="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#D4AF37] to-transparent"></div>
 </section>
 
-<script>
-  const form = document.getElementById('contactForm') as HTMLFormElement | null;
-  const messageInput = document.getElementById('message') as HTMLTextAreaElement | null;
-  const charCount = document.getElementById('charCount') as HTMLElement | null;
-  
-  // Contador de caracteres
-  if (messageInput && charCount) {
-    messageInput.addEventListener('input', function() {
-      charCount.textContent = String(messageInput.value.length);
-    });
-  }
-  
-  if (form) {
-    form.addEventListener('submit', function(e: Event) {
-      e.preventDefault();
-      
-      // Validaciones básicas
-      const nameInput = document.getElementById('name') as HTMLInputElement | null;
-      const emailInput = document.getElementById('email') as HTMLInputElement | null;
-      const messageArea = document.getElementById('message') as HTMLTextAreaElement | null;
-      
-      const name = nameInput?.value.trim() || '';
-      const email = emailInput?.value.trim() || '';
-      const message = messageArea?.value.trim() || '';
-      
-      if (!name || !email || !message) {
-        alert('Por favor completa todos los campos requeridos');
-        return;
-      }
-      
-      if (message.length > 500) {
-        alert('El mensaje no puede exceder 500 caracteres');
-        return;
-      }
-      
-      console.log('Formulario listo para enviar:', {
-        name,
-        email,
-        message
+<script is:inline>
+  (() => {
+    const form = document.getElementById('contactForm');
+    const messageInput = document.getElementById('message');
+    const charCount = document.getElementById('charCount');
+    const statusDiv = document.getElementById('contact-status');
+
+    // Contador de caracteres
+    if (messageInput && charCount) {
+      messageInput.addEventListener('input', () => {
+        charCount.textContent = String(messageInput.value.length);
       });
-      
-      alert('¡Gracias por tu mensaje! Nos pondremos en contacto pronto.');
-      form.reset();
-      if (charCount) {
-        charCount.textContent = '0';
+    }
+
+    const showStatus = (type, text) => {
+      if (!statusDiv) {
+        // eslint-disable-next-line no-alert
+        alert(text);
+        return;
       }
-    });
-  }
+      statusDiv.style.display = 'block';
+      statusDiv.textContent = text;
+      if (type === 'error') {
+        statusDiv.className = 'mb-4 p-3 rounded-lg text-center font-medium bg-red-50 text-red-700 border border-red-200';
+      } else if (type === 'loading') {
+        statusDiv.className = 'mb-4 p-3 rounded-lg text-center font-medium bg-blue-50 text-blue-700 border border-blue-200';
+      } else {
+        statusDiv.className = 'mb-4 p-3 rounded-lg text-center font-medium bg-green-50 text-green-700 border border-green-200';
+      }
+    };
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const nameInput = document.getElementById('name');
+        const emailInput = document.getElementById('email');
+        const phoneInput = document.getElementById('phone');
+        const subjectInput = document.getElementById('subject');
+        const messageArea = document.getElementById('message');
+
+        const name = nameInput?.value.trim() || '';
+        const email = emailInput?.value.trim() || '';
+        const phone = phoneInput?.value.trim() || '';
+        const subject = subjectInput?.value.trim() || '';
+        const message = messageArea?.value.trim() || '';
+
+        if (!name || !email || !subject || !message) {
+          showStatus('error', 'Por favor completa todos los campos requeridos');
+          return;
+        }
+
+        if (message.length > 500) {
+          showStatus('error', 'El mensaje no puede exceder 500 caracteres');
+          return;
+        }
+
+        showStatus('loading', 'Enviando mensaje...');
+
+        try {
+          const res = await fetch('/api/enviar-contacto', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name, email, phone, subject, message })
+          });
+
+          const data = await res.json();
+          if (res.ok && data.success) {
+            showStatus('success', '¡Gracias! Tu mensaje fue enviado correctamente.');
+            form.reset();
+            if (charCount) {
+              charCount.textContent = '0';
+            }
+          } else {
+            showStatus('error', data?.message || 'Error al enviar el mensaje');
+          }
+        } catch (err) {
+          // eslint-disable-next-line no-console
+          console.error('Error enviando contacto:', err);
+          showStatus('error', 'Error del servidor. Intenta más tarde.');
+        }
+      });
+    }
+  })();
 </script>
