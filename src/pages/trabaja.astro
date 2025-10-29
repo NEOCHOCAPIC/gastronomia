@@ -1,0 +1,98 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormularioTrabaja from '../components/FormulariotTrabaja.astro';
+---
+
+<Layout title="Trabaja Con Nosotros" description="Formulario para solicitudes de empleo">
+  <Header />
+  
+  <main>
+    <!-- Hero Section -->
+    <section class="pt-32 pb-12 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center mb-16">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            Trabaja Con Nosotros
+          </h1>
+          <p class="text-xl text-gray-600">
+            Únete a nuestro equipo de profesionales dedicados a la excelencia gastronómica. 
+            Si tienes pasión por la cocina y el servicio al cliente, ¡queremos conocerte!
+          </p>
+        </div>
+
+        <!-- Beneficios -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
+          <div class="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="text-4xl mb-4">🎯</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Ambiente Profesional</h3>
+            <p class="text-gray-600">Trabaja en un ambiente amigable y profesional con compañeros motivados.</p>
+          </div>
+
+          <div class="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="text-4xl mb-4">📈</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Crecimiento Profesional</h3>
+            <p class="text-gray-600">Oportunidades de capacitación y desarrollo de carrera dentro de nuestra empresa.</p>
+          </div>
+
+          <div class="text-center p-6 bg-white rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <div class="text-4xl mb-4">⭐</div>
+            <h3 class="text-xl font-bold text-gray-900 mb-2">Excelencia Culinaria</h3>
+            <p class="text-gray-600">Forma parte de un equipo comprometido con la calidad y la innovación.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formulario -->
+    <section class="py-16 bg-white">
+      <div class="container mx-auto px-4 lg:px-8">
+        <div class="max-w-2xl mx-auto mb-12">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">
+            Envía Tu Candidatura
+          </h2>
+          <p class="text-gray-600 text-center">
+            Completa el formulario y adjunta tu CV en PDF. Nos pondremos en contacto dentro de los próximos 5 días laborales.
+          </p>
+        </div>
+
+        <FormularioTrabaja />
+      </div>
+    </section>
+
+    <!-- Sección de Contacto Alternativo -->
+    <section class="py-16 bg-gray-50">
+      <div class="container mx-auto px-4 lg:px-8">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-2xl font-bold text-gray-900 mb-4">¿Preguntas sobre las posiciones?</h2>
+          <p class="text-gray-600 mb-8">
+            No dudes en contactarnos directamente por correo o teléfono.
+          </p>
+          <div class="space-y-4">
+            <p>
+              <strong>Email:</strong> 
+              <a href="mailto:recursos@mantagua.com" class="text-[#D4AF37] hover:text-[#B8941F] transition-colors">
+                recursos@mantagua.com
+              </a>
+            </p>
+            <p>
+              <strong>Teléfono:</strong>
+              <a href="tel:+34600000000" class="text-[#D4AF37] hover:text-[#B8941F] transition-colors">
+                +34 600 000 000
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+</style>
