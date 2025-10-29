@@ -3,7 +3,6 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "astro",
-  "env": [],
   "headers": [
     {
       "source": "/galeria/:path*.(webp|jpg|jpeg|png|gif)",
