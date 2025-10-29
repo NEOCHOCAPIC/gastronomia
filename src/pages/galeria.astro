@@ -3,15 +3,29 @@ import Header from '../components/Header.astro';
 import Layout from '../layouts/Layout.astro';
 import Footer from '../components/Footer.astro';
 
+// Tipos
+interface ImageMedia {
+  src: string;
+  alt: string;
+  type: 'image';
+}
+
+interface YoutubeVideo {
+  videoId: string;
+  type: 'youtube';
+}
+
+type MediaItem = ImageMedia | YoutubeVideo;
+
 // Obtener dinámicamente todas las imágenes de la carpeta public/galeria
 const imageModules = import.meta.glob('../../public/galeria/*.{jpg,jpeg,png,webp,gif}', { eager: true });
-const images = Object.entries(imageModules)
+const images: ImageMedia[] = Object.entries(imageModules)
   .map(([path]) => {
     const filename = path.split('/').pop();
     return {
       src: `/galeria/${filename}`,
       alt: `Imagen de galería - ${filename}`,
-      type: 'image'
+      type: 'image' as const
     };
   })
   .sort((a, b) => {
@@ -22,16 +36,38 @@ const images = Object.entries(imageModules)
     return numA - numB;
   });
 
-// Videos estáticos
-const videos = [
-  { src: '/videos/1.mp4', alt: 'Video de presentación', type: 'video' }
+// Videos de YouTube
+const youtubeVideos = [
+  { url: 'https://www.youtube.com/shorts/i5ZMjTJ5KDs', type: 'youtube' },
+  { url: 'https://www.youtube.com/shorts/m2joMYcSY9Q', type: 'youtube' },
+  { url: 'https://www.youtube.com/shorts/yVz5Q79oXg8', type: 'youtube' },
+  { url: 'https://www.youtube.com/shorts/wXfwE7bZc3w', type: 'youtube' },
+  { url: 'https://www.youtube.com/shorts/VQlekrTqB-M', type: 'youtube' },
+  { url: 'https://www.youtube.com/shorts/-4B4mEQpAf4', type: 'youtube' },
+  { url: 'https://www.youtube.com/shorts/i7qvxcA9TVc', type: 'youtube' },
+  { url: 'https://www.youtube.com/shorts/8qKtPB3T6QY', type: 'youtube' },
+  { url: 'https://www.youtube.com/shorts/3PqsdJ920Jw', type: 'youtube' },
+  { url: 'https://www.youtube.com/shorts/pKDbZF1jp4Q', type: 'youtube' },
 ];
 
+// Función para extraer ID de YouTube
+function getYoutubeId(url: string): string {
+  const regex = /(?:youtube\.com\/(?:.*v=|.*\/)|youtu\.be\/)([^"&?\s]{11})/;
+  const match = url.match(regex);
+  return match ? match[1] : '';
+}
+
+// Convertir URLs de YouTube a objetos embebibles
+const formattedYoutubeVideos: YoutubeVideo[] = youtubeVideos.map(yt => ({
+  videoId: getYoutubeId(yt.url),
+  type: 'youtube' as const
+}));
+
 // Combinar imágenes y videos
-const allMedia = [...images, ...videos];
+const allMedia: MediaItem[] = [...images, ...formattedYoutubeVideos];
 
 ---
-<Layout title="Galería" description="Galería de imágenes de nuestros servicios y locales">
+<Layout title="Galería - Mantagua" description="Galería de imágenes de nuestros servicios y locales">
   <Header />
   <main class="galeria-container">
     <section class="galeria-header pt-20">
@@ -52,26 +88,28 @@ const allMedia = [...images, ...videos];
     </section>
 
     <section class="galeria-grid" id="galeria-grid">
-      {allMedia.map((media) => (
+      {allMedia.map((media: MediaItem, index: number) => (
         <article class={`galeria-item ${media.type}`} data-type={media.type}>
-          {media.type === 'image' ? (
+          {media.type === 'image' && (
             <img 
-              src={media.src} 
-              alt={media.alt}
+              src={(media as ImageMedia).src} 
+              alt={(media as ImageMedia).alt}
               loading="lazy"
               class="galeria-imagen"
             />
-          ) : (
-            <video 
-              autoplay 
-              muted 
-              loop 
-              playsinline
-              class="galeria-video"
-            >
-              <source src={media.src} type="video/mp4" />
-              Tu navegador no soporta videos HTML5
-            </video>
+          )}
+          {media.type === 'youtube' && (
+            <div class="galeria-youtube">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${(media as YoutubeVideo).videoId}?autoplay=${index === 0 ? 1 : 0}&mute=${index === 0 ? 1 : 0}&controls=1&modestbranding=1`}
+                title="Video de YouTube"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
+            </div>
           )}
         </article>
       ))}
@@ -176,12 +214,11 @@ const allMedia = [...images, ...videos];
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
   }
 
-  .galeria-item.video:hover {
+  .galeria-item.youtube:hover {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
 
-  .galeria-imagen,
-  .galeria-video {
+  .galeria-imagen {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -189,12 +226,24 @@ const allMedia = [...images, ...videos];
     transition: transform 0.3s ease;
   }
 
-  .galeria-item.image:hover .galeria-imagen {
-    transform: scale(1.1);
+  .galeria-youtube {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #000;
   }
 
-  .galeria-item.video:hover .galeria-video {
-    transform: scale(1);
+  .galeria-youtube iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+  }
+
+  .galeria-item.image:hover .galeria-imagen {
+    transform: scale(1.1);
   }
 
   .imagen::before {
@@ -290,7 +339,7 @@ const allMedia = [...images, ...videos];
       galeriaItems.forEach(item => {
         const tipo = item.getAttribute('data-type');
         
-        if (filtro === 'todos' || filtro === tipo) {
+        if (filtro === 'todos' || filtro === tipo || (filtro === 'video' && tipo === 'youtube')) {
           item.classList.remove('oculto');
           // Forzar reflow para que la animación se ejecute
           void (item as HTMLElement).offsetHeight;
