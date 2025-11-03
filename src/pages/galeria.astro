@@ -18,24 +18,14 @@ interface YoutubeVideo {
 
 type MediaItem = ImageMedia | YoutubeVideo;
 
-// Obtener dinámicamente todas las imágenes de la carpeta public/galeria
-const imageModules = import.meta.glob('../../public/galeria/*.{jpg,jpeg,png,webp,gif}', { eager: true });
-const images: ImageMedia[] = Object.entries(imageModules)
-  .map(([path]) => {
-    const filename = path.split('/').pop();
-    return {
-      src: `/galeria/${filename}`,
-      alt: `Imagen de galería - ${filename}`,
-      type: 'image' as const
-    };
-  })
-  .sort((a, b) => {
-    const matchA = a.src.match(/\d+/);
-    const matchB = b.src.match(/\d+/);
-    const numA = matchA ? parseInt(matchA[0]) : 0;
-    const numB = matchB ? parseInt(matchB[0]) : 0;
-    return numA - numB;
-  });
+// Lista manual de imágenes (manifiesto)
+import galleryData from '../data/galeria.json';
+
+const images: ImageMedia[] = (galleryData as Array<any>).map(item => ({
+  src: item.src,
+  alt: item.alt || `Imagen de galería`,
+  type: 'image' as const
+}));
 
 // Videos de YouTube
 const youtubeVideos = [
@@ -93,26 +83,35 @@ const allMedia: MediaItem[] = [...images, ...formattedYoutubeVideos];
 
     <section class="galeria-grid" id="galeria-grid">
       {allMedia.map((media: MediaItem, index: number) => (
-        <article class={`galeria-item ${media.type}`} data-type={media.type}>
+        <article
+          class={`galeria-item ${media.type}`}
+          data-type={media.type}
+          data-index={index}
+          {...(media.type === 'youtube' ? { 'data-video-id': (media as YoutubeVideo).videoId } : {})}
+        >
           {media.type === 'image' && (
-            <img 
-              src={(media as ImageMedia).src} 
+            /* Use a tiny inline SVG placeholder to avoid extra request; real src is in data-src and will be set by IntersectionObserver */
+            <img
+              data-src={(media as ImageMedia).src}
+              src={'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"></svg>'}
               alt={(media as ImageMedia).alt}
               loading="lazy"
+              decoding="async"
               class="galeria-imagen"
+              sizes="(max-width: 480px) 150px, (max-width: 768px) 200px, 280px"
             />
           )}
+
           {media.type === 'youtube' && (
-            <div class="galeria-youtube">
-              <iframe
-                width="100%"
-                height="100%"
-                src={`https://www.youtube.com/embed/${(media as YoutubeVideo).videoId}?autoplay=${index === 0 ? 1 : 0}&mute=${index === 0 ? 1 : 0}&controls=1&modestbranding=1`}
-                title="Video de YouTube"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+            <div class="galeria-youtube" role="button" tabindex="0" aria-label="Reproducir video">
+              <img
+                class="video-thumb"
+                src={`https://i.ytimg.com/vi/${(media as YoutubeVideo).videoId}/mqdefault.jpg`}
+                alt={`Miniatura video ${(media as YoutubeVideo).videoId}`}
+                loading="lazy"
+                decoding="async"
+              />
+              <div class="play-button" aria-hidden="true"></div>
             </div>
           )}
         </article>
@@ -238,6 +237,53 @@ const allMedia: MediaItem[] = [...images, ...formattedYoutubeVideos];
     justify-content: center;
     overflow: hidden;
     background: #000;
+    position: relative;
+    cursor: pointer;
+  }
+
+  .video-placeholder {
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: relative;
+  }
+
+  .video-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .play-button::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 16px solid #ff0000;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    margin-left: 3px;
+  }
+
+  .galeria-item.youtube:hover .play-button {
+    background: rgba(255, 255, 255, 1);
+    transform: translate(-50%, -50%) scale(1.15);
   }
 
   .galeria-youtube iframe {
@@ -328,29 +374,110 @@ const allMedia: MediaItem[] = [...images, ...formattedYoutubeVideos];
 </style>
 
 <script>
-  const filtroButtons = document.querySelectorAll('.filtro-btn');
-  const galeriaItems = document.querySelectorAll('.galeria-item');
+  // @ts-nocheck
+  // Filtering buttons: minimal, uses requestAnimationFrame to batch DOM updates
+  (function () {
+    const filtroButtons = Array.from(document.querySelectorAll('.filtro-btn'));
+    const galeriaItems = Array.from(document.querySelectorAll('.galeria-item'));
 
-  filtroButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Remover clase activo de todos los botones
-      filtroButtons.forEach(btn => btn.classList.remove('activo'));
-      // Agregar clase activo al botón clickeado
-      button.classList.add('activo');
+    filtroButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        filtroButtons.forEach(btn => btn.classList.remove('activo'));
+        button.classList.add('activo');
 
-      const filtro = button.getAttribute('data-filter');
+        const filtro = button.getAttribute('data-filter');
 
-      galeriaItems.forEach(item => {
-        const tipo = item.getAttribute('data-type');
-        
-        if (filtro === 'todos' || filtro === tipo || (filtro === 'video' && tipo === 'youtube')) {
-          item.classList.remove('oculto');
-          // Forzar reflow para que la animación se ejecute
-          void (item as HTMLElement).offsetHeight;
-        } else {
-          item.classList.add('oculto');
+        requestAnimationFrame(() => {
+          galeriaItems.forEach(item => {
+            const tipo = item.getAttribute('data-type');
+            const debeVisible = filtro === 'todos' || filtro === tipo || (filtro === 'video' && tipo === 'youtube');
+            if (debeVisible) {
+              item.classList.remove('oculto');
+            } else {
+              item.classList.add('oculto');
+            }
+          });
+        });
+      });
+    });
+
+    // Lazy load images using IntersectionObserver
+    const lazyImages = Array.from(document.querySelectorAll('img[data-src]'));
+    if ('IntersectionObserver' in window) {
+      const imgObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            const src = img.getAttribute('data-src');
+            if (src) {
+              img.setAttribute('src', src);
+              img.removeAttribute('data-src');
+            }
+            observer.unobserve(img);
+          }
+        });
+      }, { rootMargin: '200px' });
+
+      lazyImages.forEach(img => imgObserver.observe(img));
+    } else {
+      // Fallback: load all images
+      lazyImages.forEach(img => {
+        const src = img.getAttribute('data-src');
+        if (src) img.setAttribute('src', src);
+      });
+    }
+
+    // Video placeholders: inject iframe on click (play-on-demand)
+    const videoPlaceholders = Array.from(document.querySelectorAll('.galeria-youtube'));
+
+    /** @param {string} videoId */
+    function createIframe(videoId) {
+      const ifr = document.createElement('iframe');
+      ifr.width = '100%';
+      ifr.height = '100%';
+      ifr.src = `https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1`;
+      ifr.title = 'Video de YouTube';
+      ifr.setAttribute('frameborder', '0');
+      ifr.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      ifr.setAttribute('allowfullscreen', '');
+      ifr.loading = 'lazy';
+      return ifr;
+    }
+
+    videoPlaceholders.forEach(ph => {
+      const videoId = ph.getAttribute('data-video-id') || ph.querySelector('.video-thumb')?.getAttribute('src')?.split('/vi/')[1]?.split('/')[0];
+      if (!videoId) return;
+
+      ph.addEventListener('click', () => {
+        const iframe = createIframe(videoId);
+        ph.replaceWith(iframe);
+      });
+
+      ph.addEventListener('keydown', (evt) => {
+        const e = /** @type {KeyboardEvent} */ (evt);
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          const iframe = createIframe(videoId);
+          ph.replaceWith(iframe);
         }
       });
     });
-  });
+
+    // Optionally: pre-inject if the placeholder becomes visible and you want autoplay-free replacement (no autoplay)
+    if ('IntersectionObserver' in window) {
+      const vidObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const ph = entry.target;
+            // do not auto-play; only load iframe without autoplay to save bandwidth
+            // If you prefer to autoplay when visible, use createIframe(videoId) with autoplay=1
+            // Here we just leave placeholders and rely on click to play.
+            observer.unobserve(ph);
+          }
+        });
+      }, { rootMargin: '300px' });
+
+      videoPlaceholders.forEach(ph => vidObserver.observe(ph));
+    }
+  })();
 </script>
