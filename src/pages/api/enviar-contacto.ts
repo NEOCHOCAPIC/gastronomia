@@ -9,6 +9,13 @@ interface EmailBody {
   message?: string;
 }
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Max-Age': '86400'
+};
+
 function escapeHtml(unsafe: string | null | undefined): string {
   if (!unsafe) return '';
   return String(unsafe)
@@ -19,6 +26,14 @@ function escapeHtml(unsafe: string | null | undefined): string {
     .replace(/'/g, '&#039;');
 }
 
+// Manejar OPTIONS request (CORS preflight)
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: CORS_HEADERS
+  });
+}
+
 export async function POST({ request }: { request: Request }) {
   try {
     const body = (await request.json()) as EmailBody;
@@ -27,7 +42,13 @@ export async function POST({ request }: { request: Request }) {
     if (!name || !email || !subject || !message) {
       return new Response(
         JSON.stringify({ success: false, message: 'Faltan campos requeridos' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { 
+          status: 400, 
+          headers: { 
+            'Content-Type': 'application/json',
+            ...CORS_HEADERS
+          } 
+        }
       );
     }
 
@@ -36,7 +57,13 @@ export async function POST({ request }: { request: Request }) {
       console.error('RESEND_API_KEY no está configurada');
       return new Response(
         JSON.stringify({ success: false, message: 'Servidor mal configurado' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
+        { 
+          status: 500, 
+          headers: { 
+            'Content-Type': 'application/json',
+            ...CORS_HEADERS
+          } 
+        }
       );
     }
 
@@ -133,19 +160,37 @@ export async function POST({ request }: { request: Request }) {
       console.error('Resend error', resp.status, text);
       return new Response(
         JSON.stringify({ success: false, message: 'Error enviando email' }),
-        { status: 502, headers: { 'Content-Type': 'application/json' } }
+        { 
+          status: 502, 
+          headers: { 
+            'Content-Type': 'application/json',
+            ...CORS_HEADERS
+          } 
+        }
       );
     }
 
     return new Response(
       JSON.stringify({ success: true, message: 'Email enviado correctamente' }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { 
+        status: 200, 
+        headers: { 
+          'Content-Type': 'application/json',
+          ...CORS_HEADERS
+        } 
+      }
     );
   } catch (err) {
     console.error('Error en enviar-contacto:', err);
     return new Response(
       JSON.stringify({ success: false, message: 'Error del servidor' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      { 
+        status: 500, 
+        headers: { 
+          'Content-Type': 'application/json',
+          ...CORS_HEADERS
+        } 
+      }
     );
   }
 }

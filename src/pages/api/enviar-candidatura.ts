@@ -8,6 +8,13 @@ interface CandidaturaBody {
   mensaje?: string;
 }
 
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  'Access-Control-Max-Age': '86400'
+};
+
 function escapeHtml(unsafe: string | null | undefined): string {
   if (!unsafe) return '';
   return String(unsafe)
@@ -16,6 +23,14 @@ function escapeHtml(unsafe: string | null | undefined): string {
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
     .replace(/'/g, '&#039;');
+}
+
+// Manejar OPTIONS request (CORS preflight)
+export async function OPTIONS() {
+  return new Response(null, {
+    status: 204,
+    headers: CORS_HEADERS
+  });
 }
 
 export async function POST({ request }: { request: Request }) {
@@ -42,7 +57,13 @@ export async function POST({ request }: { request: Request }) {
       console.error('Campos faltantes:', { nombre, email, telefono, cvFile: !!cvFile });
       return new Response(
         JSON.stringify({ success: false, message: 'Faltan campos requeridos (nombre, email, teléfono, CV)' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { 
+          status: 400, 
+          headers: { 
+            'Content-Type': 'application/json',
+            ...CORS_HEADERS
+          } 
+        }
       );
     }
 
@@ -50,7 +71,13 @@ export async function POST({ request }: { request: Request }) {
     if (cvFile.type !== 'application/pdf') {
       return new Response(
         JSON.stringify({ success: false, message: `Solo se aceptan archivos PDF. Recibido: ${cvFile.type}` }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { 
+          status: 400, 
+          headers: { 
+            'Content-Type': 'application/json',
+            ...CORS_HEADERS
+          } 
+        }
       );
     }
 
@@ -59,7 +86,13 @@ export async function POST({ request }: { request: Request }) {
     if (cvFile.size > maxSize) {
       return new Response(
         JSON.stringify({ success: false, message: 'El archivo es demasiado grande. Máximo 5MB.' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { 
+          status: 400, 
+          headers: { 
+            'Content-Type': 'application/json',
+            ...CORS_HEADERS
+          } 
+        }
       );
     }
 
@@ -68,7 +101,13 @@ export async function POST({ request }: { request: Request }) {
       console.error('RESEND_API_KEY no está configurada');
       return new Response(
         JSON.stringify({ success: false, message: 'Servidor mal configurado' }),
-        { status: 500, headers: { 'Content-Type': 'application/json' } }
+        { 
+          status: 500, 
+          headers: { 
+            'Content-Type': 'application/json',
+            ...CORS_HEADERS
+          } 
+        }
       );
     }
 
@@ -187,7 +226,13 @@ export async function POST({ request }: { request: Request }) {
       console.error('Resend error', resp.status, text);
       return new Response(
         JSON.stringify({ success: false, message: 'Error enviando candidatura' }),
-        { status: 502, headers: { 'Content-Type': 'application/json' } }
+        { 
+          status: 502, 
+          headers: { 
+            'Content-Type': 'application/json',
+            ...CORS_HEADERS
+          } 
+        }
       );
     }
 
@@ -255,13 +300,25 @@ export async function POST({ request }: { request: Request }) {
         success: true, 
         message: 'Candidatura recibida correctamente. Te enviaremos un email de confirmación.' 
       }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { 
+        status: 200, 
+        headers: { 
+          'Content-Type': 'application/json',
+          ...CORS_HEADERS
+        } 
+      }
     );
   } catch (err) {
     console.error('Error en enviar-candidatura:', err);
     return new Response(
       JSON.stringify({ success: false, message: 'Error del servidor' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      { 
+        status: 500, 
+        headers: { 
+          'Content-Type': 'application/json',
+          ...CORS_HEADERS
+        } 
+      }
     );
   }
 }
